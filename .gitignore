@@ -1,0 +1,79 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# R files
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
+.Ruserdata
+.Renviron
+
+# RStudio files
+.Rproj.user
+.Rproj.user/
+rsconnect/
+
+# Compiled files and temporary R Markdown files
+README.html
+*.utf8.md
+*.knit.md
+figure-html/
+*_files/
+*.rmarkdown
+*.html
+*.tex
+*.log
+*.aux
+/*.pdf
+*.docx
+*.doc
+*.pptx
+*.ppt
+
+# Quarto, bookdown, pkgdown website, etc
+inst/doc
+docs
+docs/
+_book/
+_bookdown_files/
+/.quarto/
+/_site/
+.quarto/
+_site/
+
+# Compilation results
+tests/results/
+
+# Key
+tests/.key
+tests/.cnt
+
+# Knitr cache
+*_cache/
+/cache/
+
+# Cache des données
+data/data_cache/
+
+# Package build files
+*-Ex.R
+po/*~
+/*.Rcheck/
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# System files and others
+www/.vscode/
+.DS_Store
+._*
+.Thumbs.db
+Thumbs.db
+core.*
