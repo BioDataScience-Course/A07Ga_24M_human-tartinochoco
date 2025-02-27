@@ -13,14 +13,14 @@ fs::dir_create("data/cache")
 
 ## Importation du dictionnaire des données
 biometry_metadata <- read$csv(
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSasAZFal-ljIJkB8LaPo1q-I6KKUbqXcdDNmbvwMhGD4f1_4tpbTRr1kWGrE4JZ1SHYBAUGfRFHhME/pub?gid=0&single=true&output=csv",
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ14kFDtlqxUqJpfKIcZRHA2i3ZnCwSdT_bqcx7BWp3hk_fqEGk9JmBvRsHvdBZrI3KCACV-LHQ-tAv/pub?gid=0&single=true&output=csv",
   cache_file = "data/cache/biometry_metadata_raw.csv",
   force = FALSE
 )
 
 ## Importation du tableau de données
 biometry <- read$csv(
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vS9yT2JjKi_LD00flboVYyovOnYMuh5NLKTFXOZYetAUE9xFUQYtUOhVhmb4Xf73mxbt4NThe2kjfe6/pub?gid=0&single=true&output=csv",
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTvgkHmrxPXHJ16cypzK7ooBhcSybscjBMc0obVSt1dvxlNL9rtage91lKD8Jec-3n4eX_6O-VdW7f/pub?gid=0&single=true&output=csv",
   cache_file = "data/cache/biometry_raw.csv",
   force = FALSE
 )
@@ -32,33 +32,42 @@ skimr::skim(biometry)
 # Modification des types de variables des données
 
 unique(biometry$genre)
-biometry$genre <- factor(biometry$genre, levels = c("h", "f"))
+biometry$genre <- factor(biometry$genre, levels = c("H", "F"))
 
-unique(biometry$regime)
-biometry$regime <- factor(biometry$regime, levels = c("omnivore", "carnivore", "végétarien"))
+unique(biometry$alimentation)
+biometry$alimentation <- factor(biometry$alimentation,
+  levels = c("omnivore", "carnivore", "végétarien"))
 
-unique(biometry$depense)
-biometry$depense <- factor(biometry$depense, levels = c(-2, -1, 1, 2), labels = c("très insuffisant", "insuffisant", "suffisant", "plus que suffisant") , ordered = TRUE)
+unique(biometry$intolerance_lactose)
+biometry$intolerance_lactose <- factor(biometry$intolerance_lactose,
+  levels = c("N", "O"))
 
-unique(biometry$depense)
-biometry$activite <- factor(biometry$activite, levels = c(0:4), ordered = TRUE)
+unique(biometry$intolerance_gluten)
+biometry$intolerance_gluten <- factor(biometry$intolerance_gluten,
+  levels = c("N", "O"))
 
-unique(biometry$hormone)
-biometry$hormone <- factor(biometry$hormone, levels = c("non", "oui"))
+unique(biometry$sucre)
+# Correction de quelques niveaux
+biometry$sucre[biometry$sucre == "souveny"] <- "souvent"
+biometry$sucre[biometry$sucre == "régulierement"] <- "régulièrement"
+# Transformation en facteur ordonné
+biometry$sucre <- ordered(biometry$sucre,
+  levels = c("jamais", "rarement", "régulièrement", "souvent"))
 
-unique(biometry$pathologie)
-biometry$pathologie <- factor(biometry$pathologie, levels = c("non", "oui"))
+unique(biometry$cortisone)
+biometry$cortisone <- factor(biometry$cortisone,
+  levels = c("N", "O"))
 
 # Correction, filtre, sélection sur le tableau des données
 
 biometry %>.%
   smutate(., 
-  # Calcul de l'age des individu
-  age = as.numeric(difftime(date_mesure, date_naissance, units = "days")/365.25), 
-  # Calcul de la masse corrigée
-  masse_corr = masse*(masse_exp_ref/masse_exp)) %>.%
-  sdrop_na(., masse_corr) -> 
-  biometry
+    # Calcul de l'age des individu
+    age = as.numeric(difftime(date_mesure, date_naissance, units = "days")/365.25), 
+    # Calcul de la masse corrigée
+    masse_corr = masse * (masse_std_ref/masse_std)) %>.%
+    sdrop_na(., masse_corr) -> 
+    biometry
 
 # Ajout des labels et des unités
 # TODO

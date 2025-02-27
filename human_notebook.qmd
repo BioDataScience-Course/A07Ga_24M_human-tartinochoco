@@ -27,13 +27,13 @@ SciViews::R(___, lang = "fr")
 
 Au cours des dernières décennies, la santé humaine a connu un déclin alarmant dans de nombreuses régions du monde. L’obésité est l’un des principaux facteurs contribuant à cette tendance inquiétante, car elle peut entraîner un large éventail de problèmes de santé, notamment des maladies cardiovasculaires, des accidents vasculaires cérébraux, des cancers, des troubles musculo-squelettiques et des troubles mentaux. En outre, l’obésité est souvent associée à un mode de vie sédentaire et à une alimentation malsaine, qui peuvent également avoir des effets négatifs sur la santé.
 
-@lebacq2015 a étudié différents indices permettant de quantifier, entre autres, l'obésité des personnes. Notre but est de tester quelques-uns de ces indices sur un échantillon de la population du Hainaut et d'établir des liens avec le mode de vie ou l'alimentation.
+@lebacq2015 a étudié différents indices permettant de quantifier, entre autres, l'obésité des personnes. Notre but est de tester quelques-uns de ces indices sur un échantillon de la population du Hainaut âgée de 18 ans ou plus, et d'établir des liens avec le mode de vie ou l'alimentation.
 
 # Matériel et méthodes
 
 Les données ont été collectées par un groupe d'une trentaine d'expérimentateurs qui se sont réparti le travail. Le choix des mesures à réaliser a fait l'objet d'un consensus au sein du groupe par l'élaboration d'un dictionnaire des données commun. Les mesures sujettes à variation (la masse plus particulièrement) ont fait l'objet d'une intercalibration. Ces données sont pseudonymisées afin de respecter l'anonymat des sujets étudiés en respect du RGPD (règlement général de la protection des données, règlement d'application en Europe).
 
-La description des données et les tests statistiques sont réalisés dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/) en utilisant [Saturn Cloud](https://saturncloud.io) (Linux) avec le [logiciel R](https://www.r-project.org) (`r R.version.string`).
+La description des données et les tests statistiques sont réalisés dans la SciViews Box 2024 en utilisant [Saturn Cloud](https://saturncloud.io) (Linux) avec le [logiciel R](https://www.r-project.org) (`r R.version.string`).
 
 # Résultats
 
@@ -205,7 +205,7 @@ La description des données et les tests statistiques sont réalisés dans la [S
 
 <!--% Interprétation statistique et biologique -->
 
-<!--# Travaillez jusqu'ici pour le module 8. -->
+<!--# Travaillez jusqu'ici pour le module 7. -->
 
 ### Test t de Student 1
 
@@ -243,7 +243,7 @@ La description des données et les tests statistiques sont réalisés dans la [S
 
 <!--% Interprétation statistique et biologique -->
 
-<!--# Travaillez jusqu'ici pour le module 9. Commencez à travailler sur le rapport (intro, mat&met). -->
+<!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
 ### ANOVA à un facteur 1
 
@@ -281,7 +281,7 @@ La description des données et les tests statistiques sont réalisés dans la [S
 
 <!--% Interprétation statistique et biologique -->
 
-<!--# Travaillez jusqu'ici pour le module 10. Commencez à rédiger la partie résultats avec la description des données. -->
+<!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
 ### ANOVA à deux facteurs 1
 
