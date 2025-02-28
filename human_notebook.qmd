@@ -1,6 +1,6 @@
 ---
 title: "Santé humaine liée à l'obésité (bloc-notes)"
-author: "___, ___, ___, ___"
+author: "Louis Carlier, Samuel Aragona, Eva Dupont, Julien-Camille Tack"
 date: "`r Sys.Date()`"
 format:
   html:
@@ -25,7 +25,7 @@ SciViews::R(___, lang = "fr")
 
 # Introduction et but
 
-Au cours des dernières décennies, la santé humaine a connu un déclin alarmant dans de nombreuses régions du monde. L’obésité est l’un des principaux facteurs contribuant à cette tendance inquiétante, car elle peut entraîner un large éventail de problèmes de santé, notamment des maladies cardiovasculaires, des accidents vasculaires cérébraux, des cancers, des troubles musculo-squelettiques et des troubles mentaux. En outre, l’obésité est souvent associée à un mode de vie sédentaire et à une alimentation malsaine, qui peuvent également avoir des effets négatifs sur la santé.
+Au cours des dernières décennies, la santé humaine a connu un déclin alarmant dans de nombreuses régions du monde. L'obésité est l'un des principaux facteurs contribuant à cette tendance inquiétante, car elle peut entraîner un large éventail de problèmes de santé, notamment des maladies cardiovasculaires, des accidents vasculaires cérébraux, des cancers, des troubles musculo-squelettiques et des troubles mentaux. En outre, l'obésité est souvent associée à un mode de vie sédentaire et à une alimentation malsaine, qui peuvent également avoir des effets négatifs sur la santé.
 
 @lebacq2015 a étudié différents indices permettant de quantifier, entre autres, l'obésité des personnes. Notre but est de tester quelques-uns de ces indices sur un échantillon de la population du Hainaut âgée de 18 ans ou plus, et d'établir des liens avec le mode de vie ou l'alimentation.
 
