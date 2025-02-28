@@ -1,6 +1,6 @@
 # Étude de l'obésité - Importation et remaniement des données
-# Auteur : ___
-# Date : ____
+# Auteur : Louis Carlier
+# Date : 28/02/2025
 ###############################################################################
 
 # Packages utiles
@@ -70,7 +70,15 @@ biometry %>.%
     biometry
 
 # Ajout des labels et des unités
-# TODO
+vec_labs <- biometry_metadata$label_fr
+names(vec_labs) <- biometry_metadata$variables
+
+vec_units <- biometry_metadata$unités
+names(vec_units) <- biometry_metadata$variables
+
+biometry <- labelise(biometry,
+  label = as.list(vec_labs),
+  units = as.list(vec_units))
 
 
 # Sauvegarde local des données importantes 
