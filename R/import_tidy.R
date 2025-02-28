@@ -76,6 +76,14 @@ names(vec_labs) <- biometry_metadata$variables
 vec_units <- biometry_metadata$unités
 names(vec_units) <- biometry_metadata$variables
 
+# Ajout manuel de 2 nouveaux labels et unités pour les graphiques
+vec_labs_extra <- c("age" = "Age", "masse_corr" = "Masse corrigée")
+vec_units_extra <- c("age" = "Années", "masse_corr" = "kg")
+
+# Combinaison des vecteurs existants avec les nouveaux labels et unités
+vec_labs <- c(vec_labs, vec_labs_extra)
+vec_units <- c(vec_units, vec_units_extra)
+
 biometry <- labelise(biometry,
   label = as.list(vec_labs),
   units = as.list(vec_units))
