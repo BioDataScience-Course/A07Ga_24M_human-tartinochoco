@@ -125,7 +125,7 @@ Analyse:
 
 <!--% Description et formule ci-dessous. -->
 
-```{r indice1 Louis}
+```{r indice1 Sam}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 
 ```
@@ -149,7 +149,7 @@ Analyse:
 
 <!--% Description et formule ci-dessous. -->
 
-```{r indice2 Sam}
+```{r indice2 Louis}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 
 ```
