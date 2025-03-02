@@ -114,8 +114,8 @@ chart(biometry,~tour_taille %col=%genre) +
 Analyse:
 
 ```{r, Description Julien-Camille B}
-chart(biometry,activite_physique~age)+
-  geom_point()
+chart(biometry, masse_corr~sucre )+
+  geom_boxplot()
 ```
 
 Analyse:
