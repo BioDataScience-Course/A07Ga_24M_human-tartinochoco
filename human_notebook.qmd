@@ -49,6 +49,7 @@ biometry<-read("data/biometry.rds")
 <!--% Ensuite vous décrirez graphiquement (avec `chart()`) et numériquement (tableaux avec `tabularise()`, `skimr::skim()`, etc.) vos données. Chaque étudiant ajoute deux éléments descriptifs pertinents. -->
 
 ### Description par l'étudiant 1
+
 ```{r, A supprimer quand tout le monde aura fait ses graphiques}
 skimr::skim(biometry)
 ```
@@ -104,13 +105,17 @@ Analyse:
 ### Description par l'étudiant 4
 
 ```{r, Description Julien-Camille A}
-
+chart(biometry,~tour_taille %col=%genre) +
+  geom_density()+
+  labs( y ="Densité")
+  
 ```
 
 Analyse:
 
 ```{r, Description Julien-Camille B}
-
+chart(biometry,activite_physique~age)+
+  geom_point()
 ```
 
 Analyse:
