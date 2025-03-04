@@ -132,7 +132,7 @@ Analyse:
 
 ```{r indice1 Sam}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry$bmi <- biometry$masse_corr/ (biometry$taille/100)^2
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
