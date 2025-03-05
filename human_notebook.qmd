@@ -156,7 +156,12 @@ biometry$bmi <- biometry$masse_corr/ (biometry$taille/100)^2
 
 ```{r indice2 Louis}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
+#Création de valeurs associées aux sexes
+biometry$genre_val <- ifelse(biometry$genre == "H",1,0)
 
+biometry$pmg<-64.5-848*(1/biometry$bmi)+0.079*biometry$age-16.4*biometry$genre_val+0.05*biometry$genre_val*biometry$age + 39*biometry$genre_val*(1/biometry$bmi)
+label(biometry$pmg)<- "Pourcentage de masse grasse"
+units(biometry$pmg) <- "%"
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
