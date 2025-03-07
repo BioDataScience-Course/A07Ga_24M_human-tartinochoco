@@ -114,6 +114,8 @@ chart(biometry,~tour_taille %col=%genre) +
 Analyse:
 
 ```{r, Description Julien-Camille B}
+give_n3<- function(x)
+  c(y = max(x) * 1.1, label = length(x))
 chart(biometry, masse_corr~sucre )+
   geom_boxplot()
 ```
