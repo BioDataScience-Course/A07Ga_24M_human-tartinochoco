@@ -91,7 +91,10 @@ Analyse:
 ### Description par l'étudiant 3
 
 ```{r, Description Eva A}
-
+chart(biometry, ~masse_corr %fill=% genre | alimentation)+ 
+geom_histogram(bins = 30) +
+scale_fill_viridis_d()+
+ylab("Effectifs")
 ```
 
 Analyse:
