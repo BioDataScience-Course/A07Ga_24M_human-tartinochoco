@@ -112,7 +112,16 @@ ylab("Effectifs")
 Analyse:
 
 ```{r, Description Eva B}
-
+## Recodage de biometry$age en biometry$age_rec1
+biometry$age_rec1 <- cut(biometry$age,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(15, 30, 45, 55, 65, 95)
+)
+chart(biometry, ~ tour_hanche %fill=% age_rec1 |age_rec1 )+
+  geom_density()+
+  ylab("Densité")
 ```
 
 Analyse:
