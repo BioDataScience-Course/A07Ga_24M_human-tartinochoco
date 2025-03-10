@@ -88,14 +88,22 @@ give_n5 <- function(x)
   c(y = max(x) * 1.1, label = length(x))
 chart(data = biometry,masse_corr ~ eau_rec) + 
   geom_boxplot() + 
-  stat_summary(fun.data=give_n5, geom= "text", hjust = 0.5, position = position_dodge(0.75))
+  stat_summary(fun.data=give_n5, geom= "text", hjust = 0.5, position = position_dodge(0.75)) + 
+  xlab("Consommation d'eau quotidienne (L/j)")
 
 ```
 
 Analyse:
 
 ```{r, Description Sam B}
-chart(data = biometry, masse_corr ~ activite_physique) + geom_point()
+## Recodage de biometry$activite_physique en biometry$activite_physique_rec
+biometry$activite_physique_rec <- cut(biometry$activite_physique,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(200, 400, 1000)
+)
+chart(data = biometry, masse_corr ~ activite_physique) + geom_boxplot()
 ```
 
 Analyse:
