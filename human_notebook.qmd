@@ -103,8 +103,9 @@ biometry$activite_physique_rec1 <- cut(biometry$activite_physique,
   dig.lab = 4,
   breaks = c(0, 200, 400, 600, 800, 1100)
 )
-chart(biometry, ~ masse_corr | activite_physique_rec1) + geom_histogram(bins = 25) +
-  ylab("Effectifs")
+chart(biometry, ~ masse_corr %fill=% alimentation | activite_physique_rec1) + geom_histogram(bins = 25) +
+  labs(y ="Effectifs", title = "Activité physique (min/sem)") + 
+  scale_fill_viridis_d()
 ```
 
 Analyse:
