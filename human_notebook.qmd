@@ -77,8 +77,18 @@ Analyse:
 ### Description par l'étudiant 2
 
 ```{r, Description Sam A}
-chart(data = biometry,masse_corr ~ eau) + 
-  geom_point() 
+## Recodage de biometry$eau en biometry$eau_rec
+biometry$eau_rec <- cut(biometry$eau,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(0, 1, 2, 3, 4)
+)
+give_n5 <- function(x)
+  c(y = max(x) * 1.1, label = length(x))
+chart(data = biometry,masse_corr ~ eau_rec) + 
+  geom_boxplot() + 
+  stat_summary(fun.data=give_n5, geom= "text", hjust = 0.5, position = position_dodge(0.75))
 
 ```
 
