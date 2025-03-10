@@ -96,14 +96,15 @@ chart(data = biometry,masse_corr ~ eau_rec) +
 Analyse:
 
 ```{r, Description Sam B}
-## Recodage de biometry$activite_physique en biometry$activite_physique_rec
-biometry$activite_physique_rec <- cut(biometry$activite_physique,
+
+biometry$activite_physique_rec1 <- cut(biometry$activite_physique,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(200, 400, 1000)
+  breaks = c(0, 200, 400, 600, 800, 1100)
 )
-chart(data = biometry, masse_corr ~ activite_physique) + geom_boxplot()
+chart(biometry, ~ masse_corr | activite_physique_rec1) + geom_histogram(bins = 25) +
+  ylab("Effectifs")
 ```
 
 Analyse:
