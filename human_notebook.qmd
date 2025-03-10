@@ -129,7 +129,7 @@ biometry$age_rec1 <- cut(biometry$age,
 )
 chart(biometry, ~ tour_hanche %fill=% age_rec1 |age_rec1 )+
   geom_density()+
-  ylab("Densité")
+  labs(fill = "Catégorie d'âges", y = "Densité")
 ```
 
 Analyse:
