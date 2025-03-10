@@ -86,7 +86,7 @@ biometry$eau_rec <- cut(biometry$eau,
 )
 give_n5 <- function(x)
   c(y = max(x) * 1.1, label = length(x))
-chart(data = biometry,masse_corr ~ eau_rec) + 
+chart(data = biometry,masse_corr ~ eau_rec %fill=% genre) + 
   geom_boxplot() + 
   stat_summary(fun.data=give_n5, geom= "text", hjust = 0.5, position = position_dodge(0.75)) + 
   xlab("Consommation d'eau quotidienne (L/j)")
