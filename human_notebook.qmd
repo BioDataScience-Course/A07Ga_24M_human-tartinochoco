@@ -151,7 +151,7 @@ Analyse:
 give_n3<- function(x)
   c(y = max(x) * 1.1, label = length(x))
 chart(biometry, masse_corr~sucre )+
-  geom_boxplot()
+  geom_boxplot() + stat_summary(fun.data = give_n3, geom = "text", hjust = 0.5)
 ```
 
 Analyse:
@@ -252,9 +252,9 @@ biometry$ratio_TTT<-biometry$tour_taille/biometry$taille
 
 ```{r plot_indice4}
 # Graphique ou tableau utilisant l'indice calculé.
-chart(biometry,~ratioTTT)+
-  geom_histogram()+
-  labs(y = "Effectifs")
+chart(biometry,~ratio_TTT)+
+  geom_density()+
+  labs(y = "Effectifs", x = "Ratio entre le tour de taille et la taille")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
