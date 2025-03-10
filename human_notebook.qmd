@@ -77,13 +77,15 @@ Analyse:
 ### Description par l'étudiant 2
 
 ```{r, Description Sam A}
+chart(data = biometry,masse_corr ~ eau) + 
+  geom_point() 
 
 ```
 
 Analyse:
 
 ```{r, Description Sam B}
-
+chart(data = biometry, masse_corr ~ activite_physique) + geom_point()
 ```
 
 Analyse:
