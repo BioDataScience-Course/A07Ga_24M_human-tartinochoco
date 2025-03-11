@@ -119,7 +119,7 @@ scale_fill_viridis_d()+
 ylab("Effectifs")
 ```
 
-Analyse:
+Analyse: La plupart des gens sont omnivores et pèsent tous entre 40 et 130kg. Il y a tout de même un pic chez les hommes entre 70 et 80 kg, tandis que chez les femmes, le pic est plutot vers les 60 - 70kg. Les carnivores sont moins nombreux que les omnivores et pèsent entre 50 et 130 kg. Les végétariens sont en nombre très réduit et sont exclusivement des femmes, leur masse se situe entre 55 et 70 kg. En général, les hommes ont tendance à avoir une masse plus importante que les femmes peut importe leur régime alimentaire.
 
 ```{r, Description Eva B}
 ## Recodage de biometry$age en biometry$age_rec1
@@ -134,7 +134,7 @@ chart(biometry, ~ tour_hanche %fill=% age_rec1 |age_rec1 )+
   labs(fill = "Catégorie d'âges", y = "Densité")
 ```
 
-Analyse:
+Analyse: Le tour de hanche a tendance à augmenter avec l'age. En effet, pour la catégorie \[15, 30\] nous pouvons observer un étalement vers la gauche, tandis que chez les \[65,95\] ans, l'étalement se fait vers la droite. A partir de \[30,45\] ans il y a des valeurs supérieures à 130cm. Les valeurs se diversifie de plus en plus au fur et à mesure que l'age augmente.
 
 ### Description par l'étudiant 4
 
