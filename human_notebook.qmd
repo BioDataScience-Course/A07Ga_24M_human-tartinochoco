@@ -376,18 +376,19 @@ chart(data= biometry, bmi~fast_food_rec_yes_no)+
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : mean(bmi\|ff\<=2)=mean(bmi\|ff\>3) H1 : mean(bmi\|ff\<=2)!=mean(bmi\|ff\>3) <!--% Vérification des conditions d'application -->
+H0 : mean(bmi\|ff\<=2)=mean(bmi\|ff\>3) 
+H1 : mean(bmi\|ff\<=2)!=mean(bmi\|ff\>3) 
+<!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
-#ad<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
-#chart(ad, ~bmi_trie)+
-#  geom_histogram(bins=15)
+# Conversion en vecteur numérique 
+biometry$bmi <- as.numeric(biometry$bmi)
 
-#Vérif de normalité
-car::qqPlot(biometry$bmi, distribution = "norm",
-  envelope = 0.95, col = "black", ylab = "")
+car::qqPlot(biometry$bmi, distribution = "norm", envelope = 0.95, col = "blue")
+
 #Test 
 t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.level= 0.95, var.equal=TRUE)
+
 
 ```
 
@@ -398,17 +399,27 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 #  geom_histogram(bins=15)
 
 verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
-chart(ad, ~bmi_trie)+
+chart(verif_bmi, ~bmi_trie)+
   geom_histogram(bins=15)
+car::qqPlot(verif_bmi$bmi_trie, distribution = "norm", envelope = 0.95, col = "blue")
 
 verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
 chart(verif_pmg, ~pmg_trie)+
   geom_histogram(bins=15)
+verif_pmg$pmg_trie <- as.numeric(verif_pmg$pmg_trie)
+car::qqPlot(verif_pmg$pmg_trie, distribution = "norm", envelope = 0.95, col = "blue")
 
-verif_TTT<-data.frame(ID=1:144, TTT_trie = sort(biometry$TTT))
+verif_TTT<-data.frame(ID=1:143, TTT_trie = sort(biometry$ratio_TTT))
 chart(verif_TTT, ~TTT_trie)+
   geom_histogram(bins=15)
+verif_TTT$TTT_trie <- as.numeric(verif_TTT$TTT_trie)
+car::qqPlot(verif_TTT$TTT_trie, distribution = "norm", envelope = 0.95, col = "blue")
 
+verif_IRC<-data.frame(ID=1:143, IRC_trie = sort(biometry$IRC))
+chart(verif_IRC, ~IRC_trie)+
+  geom_histogram(bins=15)
+verif_IRC$IRC_trie <- as.numeric(verif_IRC$IRC_trie)
+car::qqPlot(verif_IRC$IRC_trie, distribution = "norm", envelope = 0.95, col = "blue")
 ```
 
 <!--% Interprétation statistique et biologique -->
