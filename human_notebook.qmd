@@ -352,10 +352,10 @@ biometry$fast_food_rec_yes_no <- cut(biometry$fast_food,
 )
 label(biometry$fast_food_rec_yes_no)<- "Consommation de fast-food"
 units(biometry$fast_food_rec_yes_no) <- "nombre/mois"
-biometry%>.%
-  sselect(., fast_food, fast_food_rec_yes_no)->
-  verif_fastfood
-skimr::skim(verif_fastfood)
+#biometry%>.%
+#  sselect(., fast_food, fast_food_rec_yes_no)->
+#  verif_fastfood
+#skimr::skim(verif_fastfood)
 
 chart(data= biometry, bmi~fast_food_rec_yes_no)+
   geom_jitter(width=0.3, alpha=0.2)+
@@ -370,9 +370,10 @@ H1 : mean(bmi|ff<=2)!=mean(bmi|ff>3)
 <!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
-ad<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
-chart(ad, ~bmi_trie)+
-  geom_histogram(bins=15)
+#ad<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
+#chart(ad, ~bmi_trie)+
+#  geom_histogram(bins=15)
+
 #Vérif de normalité
 car::qqPlot(biometry$bmi, distribution = "norm",
   envelope = 0.95, col = "black", ylab = "")
