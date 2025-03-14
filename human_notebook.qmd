@@ -204,16 +204,17 @@ units(biometry$pmg) <- "%"
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
-
+chart(biometry, pmg~genre)+
+  geom_boxplot()
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Le pourcentage de masse grasse tend à être plus élevé chez les femmes.
 
--   ...
+-   L'étalement des données est similaire entre les hommes et les femmes.
 
--   ...
+-   Un seul homme incarne une valeur extrême basse.
 
 ### Indice 3
 
@@ -314,7 +315,30 @@ chart(biometry,~ratio_TTT)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_1}
+## Recodage de biometry$fumeur en biometry$fumeur_rec_yes_no
+biometry$fumeur_rec_yes_no <- cut(biometry$fumeur,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(-100, 0.1, 1000),
+  labels=c("Non-fumeur", "Fumeur")
+)
+label(biometry$fumeur_rec_yes_no)<- "Comportement lors de la mesure"
+units(biometry$fumeur_rec_yes_no) <- ""
+biometry%>.%
+  sselect(., fumeur, fumeur_rec_yes_no)->
+  verif_fumeur
+#skimr::skim(verif_fumeur)
 
+chart(data= biometry, pmg~fumeur_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_cl_normal", fun.args = list(conf.int = 0.95))
+
+chart(data= biometry, pmg~fumeur_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_sdl", fun.args = list(mult=1))
 ```
 
 <!-- Hypothèse nulle et alternative -->
@@ -322,7 +346,8 @@ chart(biometry,~ratio_TTT)+
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-
+car::qqPlot(biometry$fumeur, distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "")
 ```
 
 <!-- Interprétation statistique et biologique -->
@@ -332,7 +357,30 @@ chart(biometry,~ratio_TTT)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_2}
+## Recodage de biometry$fumeur en biometry$fumeur_rec_yes_no
+biometry$fast_food_rec_yes_no <- cut(biometry$fast_food,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(-100, 2.1, 1000),
+  labels=c("0-2", ">3")
+)
+label(biometry$fast_food_rec_yes_no)<- "Consommation de fast-food"
+units(biometry$fast_food_rec_yes_no) <- "nb/mois"
+biometry%>.%
+  sselect(., fast_food, fast_food_rec_yes_no)->
+  verif_fastfood
+skimr::skim(verif_fastfood)
 
+chart(data= biometry, bmi~fast_food_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_cl_normal", fun.args = list(conf.int = 0.95))
+
+#chart(data= biometry, bmi~fast_food_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_sdl", fun.args = list(mult=1))
 ```
 
 <!--% Hypothèse nulle et alternative -->
