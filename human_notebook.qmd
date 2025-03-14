@@ -116,7 +116,8 @@ Description par l'étudiant 3
 chart(biometry, ~masse_corr %fill=% genre | alimentation)+ 
 geom_histogram(bins = 30) +
 scale_fill_viridis_d()+
-ylab("Effectifs")
+ylab("Effectifs")+
+scale_y_continuous(breaks = seq(0,14, by = 2))
 ```
 
 Analyse: La plupart des gens sont omnivores et pèsent tous entre 40 et 130kg. Il y a tout de même un pic chez les hommes entre 70 et 80 kg, tandis que chez les femmes, le pic est plutot vers les 60 - 70kg. Les carnivores sont moins nombreux que les omnivores et pèsent entre 50 et 130 kg. Les végétariens sont en nombre très réduit et sont exclusivement des femmes, leur masse se situe entre 55 et 70 kg. En général, les hommes ont tendance à avoir une masse plus importante que les femmes peut importe leur régime alimentaire.
@@ -139,13 +140,12 @@ Analyse: Le tour de hanche a tendance à augmenter avec l'age. En effet, pour la
 ### Description par l'étudiant 4
 
 ```{r, Description Julien-Camille A}
-chart(biometry,~tour_taille %col=%genre) +
+chart(biometry,~tour_taille %col=% genre) +
   geom_density()+
   labs( y ="Densité")
-  
 ```
 
-Analyse: Il y a une différence de tour de taille entre les femmes et les homme. Chez les femmes, la densité est plus importante en dessous de 80 cm tandis que chez les hommes, la densité est plus importante au dessus de 80 cm. De plus, chez les hommes, il y a un deuxième pique de densité vers 90 cm.
+Analyse: Il y a une différence de tour de taille entre les femmes et les homme. Chez les femmes, la densité est plus importante en dessous de 80 cm tandis que chez les hommes, la densité est plus importante au dessus de 80 cm. De plus, chez les hommes, il y a un deuxième pic de densité vers 90 cm.Le graphique des hommes est unimodal symétrique et celui des femmes est unimodal asymétrique.
 
 ```{r, Description Julien-Camille B}
 give_n3<- function(x)
@@ -209,16 +209,17 @@ units(biometry$pmg) <- "%"
 
 ```{r plot_indice2}
 # Graphique ou tableau utilisant l'indice calculé.
-
+chart(biometry, pmg~genre)+
+  geom_boxplot()
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Le pourcentage de masse grasse tend à être plus élevé chez les femmes.
 
--   ...
+-   L'étalement des données est similaire entre les hommes et les femmes.
 
--   ...
+-   Un seul homme incarne une valeur extrême basse.
 
 ### Indice 3
 
@@ -226,23 +227,27 @@ units(biometry$pmg) <- "%"
 
 ```{r indice3 Eva}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / biometry$taille)^2)
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice3}
 # Graphique ou tableau utilisant l'indice calculé.
-
+chart(data = biometry, ~IRC %fill=% genre) + 
+geom_histogram(bins = 30, na.rm = TRUE)+
+labs(y = "Effectifs", x = "Indice rondeur corporelle")+
+scale_x_continuous(breaks = seq(0,10, by = 1))+
+scale_y_continuous(breaks = seq(0,20, by = 2))
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Il y a plus d'hommes au dessus de l'indice 4 (possibilité d'obésité) que de femmes
 
--   ...
+-   Il y a beaucoup plus de personnes avec un indice inférieur à 4 que ceux supérieur à 4
 
--   ...
+-   Il y a surtout un regroupement de personne dans la catégorie corpulence normale (1-2)
 
 ### Indice 4
 
@@ -250,25 +255,25 @@ units(biometry$pmg) <- "%"
 
 ```{r indice4 Julien-Camille}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-biometry$ratio_TTT<-biometry$tour_taille/biometry$taille
+biometry$ratio_TTT<-(biometry$tour_taille/biometry$taille)
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice4}
 # Graphique ou tableau utilisant l'indice calculé.
-chart(biometry,~ratio_TTT)+
-  geom_density()+
-  labs(y = "Effectifs", x = "Ratio entre le tour de taille et la taille")
+chart(biometry,ratio_TTT~genre %fill=% genre)+
+  geom_boxplot()+
+  labs(y ="Ratio entre le tour de taille et la taille")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Il existe des points extrême chez les hommes.
 
--   ...
+-   Il y a une grosse différence entre les femmes et les hommes au niveau de 3 ème quartiles.
 
--   ...
+-   La médianne entre les femmes et les hommes est approximativement la même.
 
 ## Tests d'hypothèses
 
@@ -319,7 +324,30 @@ chart(biometry,~ratio_TTT)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_1}
+## Recodage de biometry$fumeur en biometry$fumeur_rec_yes_no
+biometry$fumeur_rec_yes_no <- cut(biometry$fumeur,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(-100, 0.1, 1000),
+  labels=c("Non-fumeur", "Fumeur")
+)
+label(biometry$fumeur_rec_yes_no)<- "Comportement lors de la mesure"
+units(biometry$fumeur_rec_yes_no) <- ""
+biometry%>.%
+  sselect(., fumeur, fumeur_rec_yes_no)->
+  verif_fumeur
+#skimr::skim(verif_fumeur)
 
+chart(data= biometry, pmg~fumeur_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_cl_normal", fun.args = list(conf.int = 0.95))
+
+chart(data= biometry, pmg~fumeur_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_sdl", fun.args = list(mult=1))
 ```
 
 <!-- Hypothèse nulle et alternative -->
@@ -327,7 +355,8 @@ chart(biometry,~ratio_TTT)+
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-
+car::qqPlot(biometry$fumeur, distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "")
 ```
 
 <!-- Interprétation statistique et biologique -->
@@ -337,7 +366,30 @@ chart(biometry,~ratio_TTT)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_2}
+## Recodage de biometry$fumeur en biometry$fumeur_rec_yes_no
+biometry$fast_food_rec_yes_no <- cut(biometry$fast_food,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(-100, 2.1, 1000),
+  labels=c("0-2", ">3")
+)
+label(biometry$fast_food_rec_yes_no)<- "Consommation de fast-food"
+units(biometry$fast_food_rec_yes_no) <- "nb/mois"
+biometry%>.%
+  sselect(., fast_food, fast_food_rec_yes_no)->
+  verif_fastfood
+skimr::skim(verif_fastfood)
 
+chart(data= biometry, bmi~fast_food_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_cl_normal", fun.args = list(conf.int = 0.95))
+
+#chart(data= biometry, bmi~fast_food_rec_yes_no)+
+  geom_jitter(width=0.3, alpha=0.2)+
+  stat_summary(geom="point", fun="mean")+
+  stat_summary(geom="errorbar", width=0.3, fun.data="mean_sdl", fun.args = list(mult=1))
 ```
 
 <!--% Hypothèse nulle et alternative -->
