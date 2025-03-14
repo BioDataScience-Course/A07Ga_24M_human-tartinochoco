@@ -256,7 +256,7 @@ biometry$ratio_TTT<-(biometry$tour_taille/biometry$taille)
 # Graphique ou tableau utilisant l'indice calculé.
 chart(biometry,ratio_TTT~genre %fill=% genre)+
   geom_boxplot()+
-  labs(y = "Ratio entre le tour de taille et la taille")
+  labs(y ="Ratio entre le tour de taille et la taille")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
