@@ -221,23 +221,26 @@ units(biometry$pmg) <- "%"
 
 ```{r indice3 Eva}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
-
+biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / biometry$taille)^2)
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice3}
 # Graphique ou tableau utilisant l'indice calculé.
-
+chart(data = biometry, ~IRC %fill=% genre) + 
+geom_histogram(bins = 30, na.rm = TRUE)+
+labs(y = "Effectifs", x = "Indice rondeur corporelle")+
+scale_x_continuous(breaks = seq(0,10, by = 1))
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   Il y a plus d'hommes au dessus de l'indice 4 (possibilité d'obésité) que de femmes
 
--   ...
+-   Il y a beaucoup plus de personnes avec un indice inférieur à 4 que ceux supérieur à 4
 
--   ...
+-   Il y a surtout un regroupement de personne dans la catégorie corpulence normale (1-2)
 
 ### Indice 4
 
