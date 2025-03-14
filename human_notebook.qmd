@@ -285,7 +285,7 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
-```{r plot_chi2_1}
+```{r plot_chi2}
 
 ```
 
@@ -324,7 +324,15 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_t_1}
+## Recodage de biometry$sommeil en biometry$sommeil_rec
+biometry$sommeil_rec <- cut(biometry$sommeil,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(1, 7.5, 13)
+)
 
+t.test(data= biometry, IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
 ```
 
 <!-- Hypothèse nulle et alternative -->
@@ -332,7 +340,9 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-
+log_IRC<- log(IRC)
+car::qqPlot(biometry[["log_IRC"]], distribution = "norm",
+  envelope = 0.95, col = "Black")
 ```
 
 <!-- Interprétation statistique et biologique -->
@@ -365,9 +375,8 @@ chart(data= biometry, bmi~fast_food_rec_yes_no)+
 ```
 
 <!--% Hypothèse nulle et alternative -->
-H0 : mean(bmi|ff<=2)=mean(bmi|ff>3)
-H1 : mean(bmi|ff<=2)!=mean(bmi|ff>3)
-<!--% Vérification des conditions d'application -->
+
+H0 : mean(bmi\|ff\<=2)=mean(bmi\|ff\>3) H1 : mean(bmi\|ff\<=2)!=mean(bmi\|ff\>3) <!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
 #ad<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
