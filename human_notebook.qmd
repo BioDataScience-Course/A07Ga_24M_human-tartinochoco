@@ -116,7 +116,8 @@ Analyse:
 chart(biometry, ~masse_corr %fill=% genre | alimentation)+ 
 geom_histogram(bins = 30) +
 scale_fill_viridis_d()+
-ylab("Effectifs")
+ylab("Effectifs")+
+scale_y_continuous(breaks = seq(0,14, by = 2))
 ```
 
 Analyse: La plupart des gens sont omnivores et pèsent tous entre 40 et 130kg. Il y a tout de même un pic chez les hommes entre 70 et 80 kg, tandis que chez les femmes, le pic est plutot vers les 60 - 70kg. Les carnivores sont moins nombreux que les omnivores et pèsent entre 50 et 130 kg. Les végétariens sont en nombre très réduit et sont exclusivement des femmes, leur masse se situe entre 55 et 70 kg. En général, les hommes ont tendance à avoir une masse plus importante que les femmes peut importe leur régime alimentaire.
@@ -231,7 +232,8 @@ biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / bi
 chart(data = biometry, ~IRC %fill=% genre) + 
 geom_histogram(bins = 30, na.rm = TRUE)+
 labs(y = "Effectifs", x = "Indice rondeur corporelle")+
-scale_x_continuous(breaks = seq(0,10, by = 1))
+scale_x_continuous(breaks = seq(0,10, by = 1))+
+scale_y_continuous(breaks = seq(0,20, by = 2))
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
