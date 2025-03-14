@@ -93,7 +93,7 @@ chart(data = biometry,masse_corr ~ eau_rec %fill=% genre) +
 
 ```
 
-Analyse:
+Analyse: Les personnes consommant peu d'eau quotidiennement sont plus maigre que les personnes consommant la quantité d'eau recommandée quotidienne (plus de 2L par jour). On remarque aussi qu'il y a beaucoup plus de personnes qui ne boivent pas ou presque pas assez d'eau chaque jour par rapport aux personnes qui s'hydratent suffisamment.
 
 ```{r, Description Sam B}
 
@@ -101,22 +101,23 @@ biometry$activite_physique_rec1 <- cut(biometry$activite_physique,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 200, 400, 600, 800, 1100)
+  breaks = c(0, 100, 200, 400, 600, 800, 1100)
 )
 chart(biometry, ~ masse_corr %fill=% alimentation | activite_physique_rec1) + geom_histogram(bins = 25) +
   labs(y ="Effectifs", title = "Activité physique (min/sem)") + 
   scale_fill_viridis_d()
 ```
 
-Analyse:
+Analyse: On constate au premier coup d'oeil que la majorité des individus pratiquent très peu d'activité physique (moins de 100 minutes pas semaine). La masse des personnes ayant un régime végétarien ne dépasse pas les 60kg. Les personnes suivant un régime omnivore et carnivore ont des masses assez bien réparties. On constate que les personnes pratiquant souvent une activité physique (plus de 600min/sem) ont une masse dans les alentours des 70 à 80kg.
 
-### Description par l'étudiant 3
+Description par l'étudiant 3
 
 ```{r, Description Eva A}
 chart(biometry, ~masse_corr %fill=% genre | alimentation)+ 
 geom_histogram(bins = 30) +
 scale_fill_viridis_d()+
-ylab("Effectifs")
+ylab("Effectifs")+
+scale_y_continuous(breaks = seq(0,14, by = 2))
 ```
 
 Analyse: La plupart des gens sont omnivores et pèsent tous entre 40 et 130kg. Il y a tout de même un pic chez les hommes entre 70 et 80 kg, tandis que chez les femmes, le pic est plutot vers les 60 - 70kg. Les carnivores sont moins nombreux que les omnivores et pèsent entre 50 et 130 kg. Les végétariens sont en nombre très réduit et sont exclusivement des femmes, leur masse se situe entre 55 et 70 kg. En général, les hommes ont tendance à avoir une masse plus importante que les femmes peut importe leur régime alimentaire.
@@ -168,22 +169,27 @@ Analyse: On remarque que chez les personnes qui ne mangent jamais de sucre raffi
 ```{r indice1 Sam}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry$bmi <- biometry$masse_corr/ (biometry$taille/100)^2
+label(biometry$bmi)<- "Indice de masse corporelle"
+units(biometry$bmi) <- "kg/m²"
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice1}
 # Graphique ou tableau utilisant l'indice calculé.
-
+chart(data = biometry, ~ bmi %fill=% genre | sucre)+
+  geom_histogram(bins = 30)+
+  scale_fill_viridis_d() + 
+  labs(y="Effectifs", title = "Consommation de sucre")
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
 
--   ...
+-   La majorité des individus consomment régulièrement ou souvent du sucre.
 
--   ...
+-   Les hommes consomment plus souvent de sucre que les femmes.
 
--   ...
+-   Mise à part les cas extrêmes, la majeure partie des personnes consommant plus souvent de sucre ont des IMC similaires aux personnes consommant rarement du sucre.
 
 ### Indice 2
 
@@ -231,7 +237,8 @@ biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / bi
 chart(data = biometry, ~IRC %fill=% genre) + 
 geom_histogram(bins = 30, na.rm = TRUE)+
 labs(y = "Effectifs", x = "Indice rondeur corporelle")+
-scale_x_continuous(breaks = seq(0,10, by = 1))
+scale_x_continuous(breaks = seq(0,10, by = 1))+
+scale_y_continuous(breaks = seq(0,20, by = 2))
 ```
 
 <!--% Interprétation en quelques points du graphique ou tableau. -->
