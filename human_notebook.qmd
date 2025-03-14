@@ -382,6 +382,26 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 
 ```
 
+
+```{r à virer asap}
+#verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
+#chart(ad, ~bmi_trie)+
+#  geom_histogram(bins=15)
+
+verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
+chart(ad, ~bmi_trie)+
+  geom_histogram(bins=15)
+
+verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
+chart(verif_pmg, ~pmg_trie)+
+  geom_histogram(bins=15)
+
+verif_TTT<-data.frame(ID=1:144, TTT_trie = sort(biometry$TTT))
+chart(verif_TTT, ~TTT_trie)+
+  geom_histogram(bins=15)
+
+```
+
 <!--% Interprétation statistique et biologique -->
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
