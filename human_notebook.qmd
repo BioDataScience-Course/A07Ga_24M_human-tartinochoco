@@ -286,15 +286,28 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2}
-
+## Recodage de biometry$bmi en biometry$bmi_rec
+biometry$bmi_rec <- cut(biometry$bmi,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(-Inf, 24.9, Inf),
+  labels = c("Maigre-Normal", "Surpoids-Obésité")
+)
+table_contingence1 <- table(biometry$bmi_rec, biometry$eau_rec)
+tabularise(table_contingence1)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0: Le taux de consommation d'eau quotidienne n'a pas d'impact sur l'IMC.
+
+H1: Le taux de consommation d'eau quotidienne a un impact sur l'IMC.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_1}
-
+chisq.test(table_contingence1)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -376,9 +389,7 @@ chart(data= biometry, bmi~fast_food_rec_yes_no)+
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : mean(bmi\|ff\<=2)=mean(bmi\|ff\>3) 
-H1 : mean(bmi\|ff\<=2)!=mean(bmi\|ff\>3) 
-<!--% Vérification des conditions d'application -->
+H0 : mean(bmi\|ff\<=2)=mean(bmi\|ff\>3) H1 : mean(bmi\|ff\<=2)!=mean(bmi\|ff\>3) <!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
 # Conversion en vecteur numérique 
@@ -391,7 +402,6 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 
 
 ```
-
 
 ```{r à virer asap}
 #verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
