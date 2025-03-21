@@ -391,7 +391,6 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 
 ```
 
-
 ```{r à virer asap}
 #verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
 #chart(ad, ~bmi_trie)+
