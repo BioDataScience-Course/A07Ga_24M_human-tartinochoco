@@ -331,9 +331,9 @@ tabularise(table_contingence2)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Le tour du poignet dépend du bmi.
+H0 : Il y a dépendance entre le tour du poignet et le bmi.
 
-H1 : Le tour de poignet est indépendant du bmi.
+H1 : Il y a indépendance entre le tour du poignet et le bmi.
 
 <!--% Vérification des conditions d'application -->
 
