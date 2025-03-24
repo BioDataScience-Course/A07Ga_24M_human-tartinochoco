@@ -293,7 +293,7 @@ biometry$bmi_rec <- cut(biometry$bmi,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(-Inf, 24.9, Inf),
+  breaks = c(-Inf, 24.99, Inf),
   labels = c("Maigre-Normal", "Surpoids-Obésité")
 )
 table_contingence1 <- table(biometry$bmi_rec, biometry$eau_rec)
