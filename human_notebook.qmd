@@ -309,7 +309,10 @@ H1: Le taux de consommation d'eau quotidienne a un impact sur l'IMC.
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_1}
-chisq.test(table_contingence1)
+testchi1<-chisq.test(table_contingence1)
+
+testchi1$expected
+tabularise(testchi1)
 ```
 
 <!--% Interprétation statistique et biologique -->
