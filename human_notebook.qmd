@@ -257,6 +257,8 @@ scale_y_continuous(breaks = seq(0,20, by = 2))
 ```{r indice4 Julien-Camille}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry$ratio_TTT<-(biometry$tour_taille/biometry$taille)
+label(biometry$ratio_TTT)<- "Ratio entre le tour de taille et la taille de l'individu"
+units(biometry$ratio_TTT)<- "NA"
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -287,15 +289,31 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2}
-
+## Recodage de biometry$bmi en biometry$bmi_rec
+biometry$bmi_rec <- cut(biometry$bmi,
+  include.lowest = TRUE,
+  right = FALSE,
+  dig.lab = 4,
+  breaks = c(-Inf, 24.99, Inf),
+  labels = c("Maigre-Normal", "Surpoids-Obésité")
+)
+table_contingence1 <- table(biometry$bmi_rec, biometry$eau_rec)
+tabularise(table_contingence1)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0: Le taux de consommation d'eau quotidienne n'a pas d'impact sur l'IMC.
+
+H1: Le taux de consommation d'eau quotidienne a un impact sur l'IMC.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_1}
+testchi1<-chisq.test(table_contingence1)
 
+testchi1$expected
+tabularise(testchi1)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -305,15 +323,26 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2_2}
-
+biometry$tour_poignet_rec <- cut(biometry$tour_poignet,
+  right = FALSE,
+  breaks = c(10, 15, 20, 25),  
+  labels = c("Petit", "Moyen", "Grand" ), 
+  include.lowest = TRUE  
+)
+table_contingence2 <- table(biometry$tour_poignet_rec, biometry$bmi_rec)
+tabularise(table_contingence2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : Il y a dépendance entre le tour du poignet et le bmi.
+
+H1 : Il y a indépendance entre le tour du poignet et le bmi.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-
+chisq.test(table_contingence2)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -388,16 +417,47 @@ chart(data= biometry, bmi~fast_food_rec_yes_no)+
 H0 : mean(bmi\|ff\<=2)=mean(bmi\|ff\>3) H1 : mean(bmi\|ff\<=2)!=mean(bmi\|ff\>3) <!--% Vérification des conditions d'application -->
 
 ```{r test_t_2}
-#ad<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
-#chart(ad, ~bmi_trie)+
-#  geom_histogram(bins=15)
+# Conversion en vecteur numérique 
+biometry$bmi <- as.numeric(biometry$bmi)
 
-#Vérif de normalité
-car::qqPlot(biometry$bmi, distribution = "norm",
-  envelope = 0.95, col = "black", ylab = "")
+car::qqPlot(biometry$bmi, distribution = "norm", envelope = 0.95, col = "blue")
+
 #Test 
 t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.level= 0.95, var.equal=TRUE)
 
+
+
+```
+
+```{r à virer asap}
+#verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
+#chart(ad, ~bmi_trie)+
+#  geom_histogram(bins=15)
+
+verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
+az<-chart(verif_bmi, ~bmi_trie)+
+  geom_histogram(bins=15)
+car::qqPlot(verif_bmi$bmi_trie, distribution = "norm", envelope = 0.95, col = "blue")
+
+verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
+ae<-chart(verif_pmg, ~pmg_trie)+
+  geom_histogram(bins=15)
+verif_pmg$pmg_trie <- as.numeric(verif_pmg$pmg_trie)
+car::qqPlot(verif_pmg$pmg_trie, distribution = "norm", envelope = 0.95, col = "blue")
+
+verif_TTT<-data.frame(ID=1:143, TTT_trie = sort(biometry$ratio_TTT))
+ar<-chart(verif_TTT, ~TTT_trie)+
+  geom_histogram(bins=15)
+verif_TTT$TTT_trie <- as.numeric(verif_TTT$TTT_trie)
+car::qqPlot(verif_TTT$TTT_trie, distribution = "norm", envelope = 0.95, col = "blue")
+
+verif_IRC<-data.frame(ID=1:143, IRC_trie = sort(biometry$IRC))
+at<-chart(verif_IRC, ~IRC_trie)+
+  geom_histogram(bins=15)
+verif_IRC$IRC_trie <- as.numeric(verif_IRC$IRC_trie)
+car::qqPlot(verif_IRC$IRC_trie, distribution = "norm", envelope = 0.95, col = "blue")
+# Combinaison des histogrammes
+combine_charts(list(az,ae,ar,at))
 ```
 
 <!--% Interprétation statistique et biologique -->
