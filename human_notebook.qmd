@@ -228,6 +228,7 @@ chart(biometry, pmg~genre)+
 ```{r indice3 Eva}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / biometry$taille)^2)
+label(biometry$IRC)<- "Indice de rondeur corporelle"
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -331,18 +332,26 @@ biometry$sommeil_rec <- cut(biometry$sommeil,
   dig.lab = 4,
   breaks = c(1, 7.5, 13)
 )
+#test log
+biometry_E<- smutate(biometry, 
+  log_IRC = log(IRC))
 
-t.test(data= biometry, IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
+#vérification de normalité
+car::qqPlot(biometry_E[["log_IRC"]], distribution = "norm",
+envelope = 0.95, col = "Black")
 ```
 
 <!-- Hypothèse nulle et alternative -->
 
+H0 = Aucun rapport entre la durée du sommeil et l'indice de rondeur corporelle
+
+H1= Rapport entre la durée du sommeil et l'indice de rondeur corporelle
+
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
-log_IRC<- log(IRC)
-car::qqPlot(biometry[["log_IRC"]], distribution = "norm",
-  envelope = 0.95, col = "Black")
+#test
+t.test(data= biometry, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
 ```
 
 <!-- Interprétation statistique et biologique -->
