@@ -20,7 +20,7 @@ if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 
 # Configuration de l'environnement SciViews::R
-SciViews::R("infer", lang = "fr")
+SciViews::R("infer", "model", lang = "fr")
 ```
 
 # Introduction et but
@@ -229,6 +229,7 @@ chart(biometry, pmg~genre)+
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / biometry$taille)^2)
 label(biometry$IRC)<- "Indice de rondeur corporelle"
+units(biometry$IRC)<- ""
 ```
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
@@ -317,6 +318,8 @@ tabularise(testchi1)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Il y a significativement un rapport au seuil alpha = 5% entre le taux de consommation d'eau quotidienne et l'indice de masse corporelle. (X²obs = 9.77 ; Ddl = 3; Valeur de p = 0.0206)
 
 ### Test de Chi^2^ 2
 
@@ -437,6 +440,7 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
 az<-chart(verif_bmi, ~bmi_trie)+
   geom_histogram(bins=15)
+verif_bmi$bmi_trie <- as.numeric(verif_bmi$bmi_trie)
 car::qqPlot(verif_bmi$bmi_trie, distribution = "norm", envelope = 0.95, col = "blue")
 
 verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
@@ -479,12 +483,18 @@ combine_charts(list(az,ae,ar,at))
 
 ```{r test_anova1_1}
 #Eva
-#vérification homoscédasticité 
 
-#vérification normalité
 #test ANOVA
-biometry_anova<- lm(data = biometry, IRC ~ genre)
+biometry_anova<- lm(data = biometry_E, IRC ~ sucre)
 anova(biometry_anova) |>tabularise()
+#vérification homoscédasticité 
+bartlett.test(data = biometry_E, IRC ~sucre)
+#vérification normalité
+chart$qqplot(biometry_anova, lang = "fr")
+#test post-hoc
+biometry_posthoc<- confint(multcomp::glht(biometry_anova,
+  linfct = multcomp::mcp(group = "Tukey")))
+plot(biometry_posthoc)
 ```
 
 <!--% Interprétation statistique et biologique -->
@@ -494,7 +504,9 @@ anova(biometry_anova) |>tabularise()
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
-
+chart(data=biometry, tour_taille~alimentation)+
+  geom_boxplot()
+  
 ```
 
 <!--% Hypothèse nulle et alternative -->
