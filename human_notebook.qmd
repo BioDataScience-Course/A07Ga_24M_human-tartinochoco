@@ -478,7 +478,7 @@ On ne rejette pas H0 au seuil alpha de 5% (t = 0.58851, df = 141 , p-value = 0.5
 
 ```{r plot_anova1_1}
 #Eva
-#test post-hoc
+#graph test
 chart(data = biometry_E, log_IRC ~ eau_rec) +
   geom_boxplot() +
   geom_jitter(width = 0.05, alpha = 0.5) +
@@ -504,6 +504,9 @@ anova(biometry_anova) |>tabularise()
 bartlett.test(data = biometry_E, log_IRC ~ eau_rec)
 #vérification normalité
 chart$qqplot(biometry_anova, lang = "fr")
+#test post hoc
+summary(biometry_posthoc<- confint(multcomp::glht(biometry_anova, linfct = multcomp::mcp(eau_rec = "Tukey"))))
+plot(biometry_posthoc)
 ```
 
 <!--% Interprétation statistique et biologique -->
