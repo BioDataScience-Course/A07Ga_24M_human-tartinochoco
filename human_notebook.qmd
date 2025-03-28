@@ -554,7 +554,7 @@ par(oma)
 rm(oma)
 ```
 
-<!--% Interprétation statistique et biologique -->
+<!--% Interprétation statistique et biologique --> Il y a une différence significative entre les moyennes des personnes qui consoment régulièrement et jamais à rarement du scure au seuil alpha de 5% (ANOVA, Ddl =2&141, F = 4.81 et P-value= 0.00949
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
