@@ -363,7 +363,7 @@ biometry$sommeil_rec <- cut(biometry$sommeil,
 )
 #test log
 biometry_E<- smutate(biometry, 
-  log_IRC = log(IRC))
+  log_IRC = as.numeric(log(IRC)))
 
 #vérification de normalité
 car::qqPlot(biometry_E[["log_IRC"]], distribution = "norm",
@@ -372,15 +372,15 @@ envelope = 0.95, col = "Black")
 
 <!-- Hypothèse nulle et alternative -->
 
-H0 = Aucun rapport entre la durée du sommeil et l'indice de rondeur corporelle
+H0 = Aucun rapport entre la durée du sommeil et le logarithme de l'indice de rondeur corporelle
 
-H1= Rapport entre la durée du sommeil et l'indice de rondeur corporelle
+H1= Rapport entre la durée du sommeil et le logarithme l'indice de rondeur corporelle
 
 <!-- Vérification des conditions d'application -->
 
 ```{r test_t_1}
 #test
-t.test(data= biometry, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
+t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
 ```
 
 <!-- Interprétation statistique et biologique -->
