@@ -82,7 +82,7 @@ biometry$eau_rec <- cut(biometry$eau,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 1, 2, 3, 4)
+  breaks = c(0, 1, 2, 4)
 )
 give_n5 <- function(x)
   c(y = max(x) * 1.1, label = length(x))
@@ -473,10 +473,19 @@ combine_charts(list(az,ae,ar,at))
 
 ```{r plot_anova1_1}
 #Eva
-
+#test post-hoc
+chart(data = biometry_E, log_IRC ~ eau_rec) +
+  geom_boxplot() +
+  geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)+
+  labs(y ="Logarthime de l'indice de rondeur corporelle", x= "Consommation d'eau par jour (L/jour)")
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+H0= Toutes les moyennes sont égales.
+
+H1= Au moins une des moyennes diffère des autres.
 
 <!--% Vérification des conditions d'application -->
 
@@ -484,16 +493,12 @@ combine_charts(list(az,ae,ar,at))
 #Eva
 
 #test ANOVA
-biometry_anova<- lm(data = biometry_E, IRC ~ sucre)
+biometry_anova<- lm(data = biometry_E, log_IRC ~ eau_rec)
 anova(biometry_anova) |>tabularise()
 #vérification homoscédasticité 
-bartlett.test(data = biometry_E, IRC ~sucre)
+bartlett.test(data = biometry_E, log_IRC ~ eau_rec)
 #vérification normalité
 chart$qqplot(biometry_anova, lang = "fr")
-#test post-hoc
-biometry_posthoc<- confint(multcomp::glht(biometry_anova,
-  linfct = multcomp::mcp(group = "Tukey")))
-plot(biometry_posthoc)
 ```
 
 <!--% Interprétation statistique et biologique -->
