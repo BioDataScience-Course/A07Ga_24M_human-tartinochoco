@@ -383,10 +383,12 @@ H1= Rapport entre la durée du sommeil et le logarithme l'indice de rondeur corp
 
 ```{r test_t_1}
 #test
-t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
+t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = FALSE)
 ```
 
 <!-- Interprétation statistique et biologique -->
+
+Nous ne pouvons pas dire que la durée de sommeil change de manière significative le logarithme de l'indice de rondeur corporelle (test t de Welch indépendant, ddl = 107.74, p = 0.06)
 
 ### Test t de Student 2
 
