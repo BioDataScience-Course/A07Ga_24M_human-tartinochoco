@@ -58,11 +58,13 @@ skimr::skim(biometry)
 give_n <- function(x)
   c(y = max(x) * 1.03, label = length(x))
 chart(biometry, taille~genre %fill=%genre)+
-  geom_violin()+ 
-  stat_summary(fun.data=give_n, geom= "text", hjust = 0.5)
+  geom_violin(draw_quantiles = c(0.25, 0.5, 0.75))+
+  #geom_jitter(alpha=0.5, width=0.1)
+  stat_summary(fun.data=give_n, geom= "text", hjust = 0.5)+
+  labs(title="Graphique en violon avec les quantiles")
 ```
 
-Analyse:
+Analyse: Dans notre échantillon, les hommes ont globalement tendance à être plus grands que les femmes.
 
 ```{r, Description Louis B}
 give_n2 <- function(x)
@@ -504,8 +506,17 @@ plot(biometry_posthoc)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
-chart(data=biometry, tour_taille~alimentation)+
-  geom_boxplot()
+## Recodage de biometry$sucre en biometry$sucre_rec
+biometry$sucre_rec <- biometry$sucre %>%
+  fct_recode(
+    "jamais à rarement" = "jamais",
+    "jamais à rarement" = "rarement"
+  )
+
+chart(data=biometry, tour_taille~sucre_rec)+
+  geom_violin()+
+  geom_jitter(width=0.1, alpha=0.5)+
+  stat_summary(geom="point", fun="mean", col="red", size=3)
   
 ```
 
@@ -514,7 +525,19 @@ chart(data=biometry, tour_taille~alimentation)+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova1_2}
+sucre_lm<-lm(data= biometry, tour_taille ~sucre_rec)
+tabularise(anova(sucre_lm))
+#Vérif homoscédasticité
+bartlett.test(data=biometry,tour_taille ~sucre_rec)
+#Résidus qqplot
+chart$qqplot(sucre_lm, lang="fr")
+#post hoc
+summary(sucre_confint<-confint(multcomp::glht(sucre_lm, linfct=multcomp::mcp(sucre_rec="Tukey"))))
 
+oma<-par(oma=c(0,9.5,0,0))
+plot(sucre_confint)
+par(oma)
+rm(oma)
 ```
 
 <!--% Interprétation statistique et biologique -->
