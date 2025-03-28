@@ -388,7 +388,7 @@ t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.lev
 
 <!-- Interprétation statistique et biologique -->
 
-Nous ne pouvons pas dire que la durée de sommeil change de manière significative le logarithme de l'indice de rondeur corporelle (test t de Welch indépendant, ddl = 107.74, p = 0.06)
+Nous ne pouvons pas dire que la durée de sommeil change de manière significative le logarithme de l'indice de rondeur corporelle au seuil de 5%(test t de Welch indépendant, ddl = 107.74, p = 0.06)
 
 ### Test t de Student 2
 
