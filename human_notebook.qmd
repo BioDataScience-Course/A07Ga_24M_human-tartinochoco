@@ -319,7 +319,7 @@ tabularise(testchi1)
 
 <!--% Interprétation statistique et biologique -->
 
-Il y a significativement un rapport au seuil alpha = 5% entre le taux de consommation d'eau quotidienne et l'indice de masse corporelle. (X²obs = 9.77 ; Ddl = 3; Valeur de p = 0.0206)
+Le genre a significativement au seuil alpha = 5% un impact sur le pourcentage de masse grasse corporelle. (X²obs = 51.1 ; Ddl = 3; Valeur de p = 4,59.10\^-11)
 
 ### Test de Chi^2^ 2
 
