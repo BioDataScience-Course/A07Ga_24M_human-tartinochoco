@@ -437,6 +437,7 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
 az<-chart(verif_bmi, ~bmi_trie)+
   geom_histogram(bins=15)
+verif_bmi$bmi_trie <- as.numeric(verif_bmi$bmi_trie)
 car::qqPlot(verif_bmi$bmi_trie, distribution = "norm", envelope = 0.95, col = "blue")
 
 verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
@@ -494,7 +495,9 @@ anova(biometry_anova) |>tabularise()
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
-
+chart(data=biometry, tour_taille~alimentation)+
+  geom_boxplot()
+  
 ```
 
 <!--% Hypothèse nulle et alternative -->
