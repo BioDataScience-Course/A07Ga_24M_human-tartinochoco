@@ -388,7 +388,7 @@ t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.lev
 
 <!-- Interprétation statistique et biologique -->
 
-Nous ne pouvons pas dire que la durée de sommeil change de manière significative le logarithme de l'indice de rondeur corporelle (test t de Welch indépendant, ddl = 107.74, p = 0.06)
+Nous ne pouvons pas dire que la durée de sommeil change de manière significative le logarithme de l'indice de rondeur corporelle au seuil de 5%(test t de Welch indépendant, ddl = 107.74, p = 0.06)
 
 ### Test t de Student 2
 
@@ -468,7 +468,7 @@ combine_charts(list(az,ae,ar,at))
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5% (t = 0.58851, df = 141 , p-value = 0.5571). C'est à dire que la moyenne du bmi pour les individus mangeant entre 0 et 2 fast-food par mois est égale à la moyenne du bmi des individus mangeant plus de 3 fast-food par mois.
+On ne rejette pas H0 au seuil alpha de 5% de manière significatives (t = 0.58851, df = 141 , p-value = 0.5571). C'est à dire que la moyenne du bmi pour les individus mangeant entre 0 et 2 fast-food par mois est égale à la moyenne du bmi des individus mangeant plus de 3 fast-food par mois.
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
