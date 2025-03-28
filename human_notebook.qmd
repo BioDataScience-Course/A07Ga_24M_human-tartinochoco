@@ -332,15 +332,15 @@ biometry$tour_poignet_rec <- cut(biometry$tour_poignet,
   labels = c("Petit", "Moyen", "Grand" ), 
   include.lowest = TRUE  
 )
-table_contingence2 <- table(biometry$tour_poignet_rec, biometry$bmi_rec)
+table_contingence2 <- table(biometry$tour_poignet_rec, biometry$pmg_rec)
 tabularise(table_contingence2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Il y a dépendance entre le tour du poignet et le bmi.
+H0 : Il y a dépendance entre le tour du poignet et le pourcnetage de masse grass.
 
-H1 : Il y a indépendance entre le tour du poignet et le bmi.
+H1 : Il y a indépendance entre le tour du poignet et le pourcentage de masse grasse.
 
 <!--% Vérification des conditions d'application -->
 
