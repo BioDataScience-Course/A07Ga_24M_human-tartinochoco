@@ -82,7 +82,7 @@ biometry$eau_rec <- cut(biometry$eau,
   include.lowest = TRUE,
   right = FALSE,
   dig.lab = 4,
-  breaks = c(0, 1, 2, 3, 4)
+  breaks = c(0, 1, 2, 4)
 )
 give_n5 <- function(x)
   c(y = max(x) * 1.1, label = length(x))
@@ -468,7 +468,7 @@ combine_charts(list(az,ae,ar,at))
 
 <!--% Interprétation statistique et biologique -->
 
-On ne rejette pas H0 au seuil alpha de 5% (t = 0.58851, df = 141 , p-value = 0.5571). C'est à dire que la moyenne du bmi pour les individus mangeant entre 0 et 2 fast-food par mois est égale à la moyenne du bmi des individus mangeant plus de 3 fast-food par mois.
+On ne rejette pas H0 au seuil alpha de 5% de manière significatives (t = 0.58851, df = 141 , p-value = 0.5571). C'est à dire que la moyenne du bmi pour les individus mangeant entre 0 et 2 fast-food par mois est égale à la moyenne du bmi des individus mangeant plus de 3 fast-food par mois.
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
@@ -478,10 +478,19 @@ On ne rejette pas H0 au seuil alpha de 5% (t = 0.58851, df = 141 , p-value = 0.5
 
 ```{r plot_anova1_1}
 #Eva
-
+#test post-hoc
+chart(data = biometry_E, log_IRC ~ eau_rec) +
+  geom_boxplot() +
+  geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun = "mean", color = "red", size = 3)+
+  labs(y ="Logarthime de l'indice de rondeur corporelle", x= "Consommation d'eau par jour (L/jour)")
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+H0= Toutes les moyennes sont égales.
+
+H1= Au moins une des moyennes diffère des autres.
 
 <!--% Vérification des conditions d'application -->
 
@@ -489,16 +498,12 @@ On ne rejette pas H0 au seuil alpha de 5% (t = 0.58851, df = 141 , p-value = 0.5
 #Eva
 
 #test ANOVA
-biometry_anova<- lm(data = biometry_E, IRC ~ sucre)
+biometry_anova<- lm(data = biometry_E, log_IRC ~ eau_rec)
 anova(biometry_anova) |>tabularise()
 #vérification homoscédasticité 
-bartlett.test(data = biometry_E, IRC ~sucre)
+bartlett.test(data = biometry_E, log_IRC ~ eau_rec)
 #vérification normalité
 chart$qqplot(biometry_anova, lang = "fr")
-#test post-hoc
-biometry_posthoc<- confint(multcomp::glht(biometry_anova,
-  linfct = multcomp::mcp(group = "Tukey")))
-plot(biometry_posthoc)
 ```
 
 <!--% Interprétation statistique et biologique -->
