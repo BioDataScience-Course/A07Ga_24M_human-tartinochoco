@@ -469,6 +469,7 @@ combine_charts(list(az,ae,ar,at))
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_1}
+#Eva
 
 ```
 
@@ -477,7 +478,13 @@ combine_charts(list(az,ae,ar,at))
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova1_1}
+#Eva
+#vérification homoscédasticité 
 
+#vérification normalité
+#test ANOVA
+biometry_anova<- lm(data = biometry, IRC ~ genre)
+anova(biometry_anova) |>tabularise()
 ```
 
 <!--% Interprétation statistique et biologique -->
