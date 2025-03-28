@@ -290,23 +290,23 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2}
-## Recodage de biometry$bmi en biometry$bmi_rec
-biometry$bmi_rec <- cut(biometry$bmi,
+## Recodage de biometry$pmg en biometry$pmg_rec
+biometry$pmg_rec <- cut(biometry$pmg,
   include.lowest = TRUE,
-  right = FALSE,
+  right = TRUE,
   dig.lab = 4,
-  breaks = c(-Inf, 24.99, Inf),
-  labels = c("Maigre-Normal", "Surpoids-Obésité")
+  breaks = c(-Inf, 21, 31, 39, Inf),
+  labels = c("Faible", "En bonne santé", "Surpoids", "Obèse")
 )
-table_contingence1 <- table(biometry$bmi_rec, biometry$eau_rec)
+table_contingence1 <- table(biometry$pmg_rec, biometry$genre)
 tabularise(table_contingence1)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-H0: Le taux de consommation d'eau quotidienne n'a pas d'impact sur l'IMC.
+H0: Le genre n'a pas d'impact sur le pourcentage de masse grasse corporelle.
 
-H1: Le taux de consommation d'eau quotidienne a un impact sur l'IMC.
+H1: Le genre a un impact sur le pourcentage de masse grasse corporelle.
 
 <!--% Vérification des conditions d'application -->
 
@@ -332,15 +332,15 @@ biometry$tour_poignet_rec <- cut(biometry$tour_poignet,
   labels = c("Petit", "Moyen", "Grand" ), 
   include.lowest = TRUE  
 )
-table_contingence2 <- table(biometry$tour_poignet_rec, biometry$bmi_rec)
+table_contingence2 <- table(biometry$tour_poignet_rec, biometry$pmg_rec)
 tabularise(table_contingence2)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Il y a dépendance entre le tour du poignet et le bmi.
+H0 : Il y a dépendance entre le tour du poignet et le pourcnetage de masse grass.
 
-H1 : Il y a indépendance entre le tour du poignet et le bmi.
+H1 : Il y a indépendance entre le tour du poignet et le pourcentage de masse grasse.
 
 <!--% Vérification des conditions d'application -->
 
@@ -383,10 +383,12 @@ H1= Rapport entre la durée du sommeil et le logarithme l'indice de rondeur corp
 
 ```{r test_t_1}
 #test
-t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = TRUE)
+t.test(data= biometry_E, log_IRC~sommeil_rec , alternative="two.sided", conf.level= 0.95, var.equal = FALSE)
 ```
 
 <!-- Interprétation statistique et biologique -->
+
+Nous ne pouvons pas dire que la durée de sommeil change de manière significative le logarithme de l'indice de rondeur corporelle (test t de Welch indépendant, ddl = 107.74, p = 0.06)
 
 ### Test t de Student 2
 
@@ -440,6 +442,7 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
 az<-chart(verif_bmi, ~bmi_trie)+
   geom_histogram(bins=15)
+verif_bmi$bmi_trie <- as.numeric(verif_bmi$bmi_trie)
 car::qqPlot(verif_bmi$bmi_trie, distribution = "norm", envelope = 0.95, col = "blue")
 
 verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
@@ -464,6 +467,8 @@ combine_charts(list(az,ae,ar,at))
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+On ne rejette pas H0 au seuil alpha de 5% (t = 0.58851, df = 141 , p-value = 0.5571). C'est à dire que la moyenne du bmi pour les individus mangeant entre 0 et 2 fast-food par mois est égale à la moyenne du bmi des individus mangeant plus de 3 fast-food par mois.
 
 <!--# Travaillez jusqu'ici pour le module 8. Commencez à travailler sur le rapport (intro, mat&met). -->
 
@@ -508,7 +513,9 @@ chart$qqplot(biometry_anova, lang = "fr")
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova1_2}
-
+chart(data=biometry, tour_taille~alimentation)+
+  geom_boxplot()
+  
 ```
 
 <!--% Hypothèse nulle et alternative -->
