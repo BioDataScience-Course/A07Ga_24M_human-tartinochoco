@@ -362,7 +362,7 @@ biometry$sommeil_rec <- cut(biometry$sommeil,
   breaks = c(1, 7.5, 13)
 )
 #test log
-biometry_E<- ssummarise(biometry, 
+biometry_E<- smutate(biometry, 
   log_IRC = log(IRC))
 
 #vérification de normalité
