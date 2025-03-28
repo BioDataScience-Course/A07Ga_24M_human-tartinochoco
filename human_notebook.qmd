@@ -511,6 +511,8 @@ plot(biometry_posthoc)
 
 <!--% Interprétation statistique et biologique -->
 
+Il n'y a pas de différence significative entre les moyennes du logarithme d'indice de rondeur corporelle au seuil de 5% (ANOVA, F = 1.75, ddl = 2 & 140, p = 0.18)
+
 ### ANOVA à un facteur 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
