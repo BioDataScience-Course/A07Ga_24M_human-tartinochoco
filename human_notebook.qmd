@@ -289,23 +289,23 @@ chart(biometry,ratio_TTT~genre %fill=% genre)+
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_chi2}
-## Recodage de biometry$bmi en biometry$bmi_rec
-biometry$bmi_rec <- cut(biometry$bmi,
+## Recodage de biometry$pmg en biometry$pmg_rec
+biometry$pmg_rec <- cut(biometry$pmg,
   include.lowest = TRUE,
-  right = FALSE,
+  right = TRUE,
   dig.lab = 4,
-  breaks = c(-Inf, 24.99, Inf),
-  labels = c("Maigre-Normal", "Surpoids-Obésité")
+  breaks = c(-Inf, 21, 31, 39, Inf),
+  labels = c("Faible", "En bonne santé", "Surpoids", "Obèse")
 )
-table_contingence1 <- table(biometry$bmi_rec, biometry$eau_rec)
+table_contingence1 <- table(biometry$pmg_rec, biometry$genre)
 tabularise(table_contingence1)
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
-H0: Le taux de consommation d'eau quotidienne n'a pas d'impact sur l'IMC.
+H0: Le genre n'a pas d'impact sur le pourcentage de masse grasse corporelle.
 
-H1: Le taux de consommation d'eau quotidienne a un impact sur l'IMC.
+H1: Le genre a un impact sur le pourcentage de masse grasse corporelle.
 
 <!--% Vérification des conditions d'application -->
 
