@@ -69,13 +69,13 @@ Analyse: Dans notre échantillon, les hommes ont globalement tendance à être p
 ```{r, Description Louis B}
 give_n2 <- function(x)
   c(y = max(x) * 1.1, label = length(x))
-chart(biometry, masse_corr~genre %fill=% alimentation)
+chart(biometry, masse_corr~genre %fill=% alimentation)+
   geom_boxplot()+
   scale_fill_manual(values = c("mediumorchid1", "lightcoral", "lightgreen"))+
   stat_summary(fun.data=give_n2, geom= "text", hjust = 0.5, position = position_dodge(0.75))
 ```
 
-Analyse: Les omnivores sont prépondérants. De plus, notre échantillon ne contient pas d'hommes végétariens.
+Analyse: Les omnivores sont prépondérants, tandis que les régimes carnivores et végétariens sont beaucoup plus rares. De plus, notre échantillon ne contient aucun homme végétarien.
 
 ### Description par l'étudiant 2
 
