@@ -1,6 +1,6 @@
 ---
-title: "___"
-author: "___, ___, ___, ___"
+title: "L'influence de ... sur l'obésité "
+author: "Louis Carlier, Samuel Aragona, Eva Dupont, Julien-Camille Tack"
 date: "`r Sys.Date()`"
 format:
   html:
@@ -22,7 +22,7 @@ if (!"tools:tests" %in% search())
   source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
 
 # Configuration de l'environnement SciViews::R
-SciViews::R(___, lang = "fr")
+SciViews::R("infer", lang = "fr")
 ```
 
 # Introduction
@@ -37,7 +37,7 @@ SciViews::R(___, lang = "fr")
 
 <!--% Formulez ici de façon concise et précise votre question de recherche en 1 à 2 phrases. -->
 
-...Votre but ici...
+Le but de cette recherche est de déterminer les différents facteurs qui influencent l'apparition de l'obésité chez les personnes âgées de 18 à 80 ans.
 
 # Matériel et méthodes
 
