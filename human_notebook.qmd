@@ -340,7 +340,7 @@ tabularise(table_contingence2)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Il y a dépendance entre le tour du poignet et le pourcnetage de masse grass.
+H0 : Il y a dépendance entre le tour du poignet et le pourcentage de masse grasse.
 
 H1 : Il y a indépendance entre le tour du poignet et le pourcentage de masse grasse.
 
@@ -582,6 +582,10 @@ chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : Il n'y a pas d'effet significatifs des deux facteurs sur la variable dépendantes, les moyennes sont égales pour chaque facteur..
+
+H1 : Il y a un effet significatif d'au moins un des facteurs sur la variable dépendante, (les moyennes diffèrent ) ou il y a interaction entre les facteurs.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
@@ -594,15 +598,65 @@ chart$qqplot(biometrya2f1)
 
 <!--% Interprétation statistique et biologique -->
 
+Il n'y a pas d'interaction entre la consommation de sucre et le nombre de fast-food par mois sur la variable dépendantes bmi. Et il n'y a pas d'effet significatif des deux facteurs sur le bmi.
+
 ### ANOVA à deux facteurs 2
 
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
+biomano<- anova(biometry_anova22 <- lm(data = biometry, bmi ~ age_rec1 * genre)) 
+tabularise(biomano)
+
+library(dplyr)
+library(ggplot2)
+
+# Calcul des moyennes par groupe (age_rec1 x genre)
+bmi_means <- biometry %>%
+  group_by(age_rec1, genre) %>%
+  summarise(bmi_mean = mean(bmi, na.rm = TRUE)) %>%
+  ungroup()
+
+# Graphique d'interaction
+ggplot(bmi_means, aes(x = age_rec1, y = bmi_mean, color = genre, group = genre)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Graphique d'interaction : Effet de l'âge et du genre sur l'IMC",
+    x = "Tranche d'âge",
+    y = "IMC moyen",
+    color = "Genre"
+  ) +
+  theme_minimal()
+
 
 ```
 
 <!--% Hypothèse nulle et alternative -->
+
+-   **Effet principal de l'âge (`age_rec1`)**
+
+    -   H₀₁ : Les moyennes de BMI sont égales pour tous les groupes d'âge.
+
+        H₁₁ : Au moins une moyenne diffère selon l'âge
+
+```{=html}
+<!-- -->
+```
+-    **Effet principal du genre (`genre`)**
+
+    -   H₀₂ : Les moyennes de BMI sont égales pour tous les genres.
+
+        H₁₂ : Les moyennes de BMI diffèrent selon le genre.
+
+```{=html}
+<!-- -->
+```
+-    **Interaction entre âge et genre (`age_rec1 * genre`)**
+
+    -   H₀₃ : Il **n\'y a pas d\'interaction** entre l\'âge et le genre sur le BMI.
+
+        H₁₃ : Il **existe une interaction** : l\'effet de l\'âge dépend du genre, ou vice versa.
 
 <!--% Vérification des conditions d'application -->
 
