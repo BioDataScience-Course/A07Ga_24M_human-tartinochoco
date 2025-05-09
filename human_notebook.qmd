@@ -582,6 +582,10 @@ chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : Il n'y a pas d'effet significatifs des deux facteurs sur la variable dépendantes, les moyennes sont égales pour chaque facteur..
+
+H1 : Il y a un effet significatif d'au moins un des facteurs sur la variable dépendante, (les moyennes diffèrent ) ou il y a interaction entre les facteurs.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
@@ -593,6 +597,8 @@ chart$qqplot(biometrya2f1)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Il n'y a pas d'interaction entre la consommation de sucre et le nombre de fast-food par mois sur la variable dépendantes bmi. Et il n'y a pas d'effet significatif des deux facteurs sur le bmi.
 
 ### ANOVA à deux facteurs 2
 
