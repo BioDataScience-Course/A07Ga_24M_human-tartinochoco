@@ -564,6 +564,14 @@ rm(oma)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
+table(biometry$fast_food_rec_yes_no, biometry$sucre_rec)
+
+biometry %>.%
+  sgroup_by(., fast_food_rec_yes_no, sucre_rec) %>.%
+  ssummarise(., BMI_moyen = mean(bmi, na.rm = TRUE)) %>.%
+chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_food_rec_yes_no) +
+    geom_line() +
+    geom_point()
 
 ```
 
@@ -572,7 +580,11 @@ rm(oma)
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
+biometrya2f1 <- lm(data = biometry, bmi ~ eau_rec*Conso_cig)
+anova(biometrya2f1) %>.%
+  tabularise(.)
 
+chart$qqplot(biometrya2f1)
 ```
 
 <!--% Interprétation statistique et biologique -->
