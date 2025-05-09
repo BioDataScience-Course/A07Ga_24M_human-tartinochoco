@@ -605,66 +605,69 @@ Il n'y a pas d'interaction entre la consommation de sucre et le nombre de fast-f
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_2}
-biomano<- anova(biometry_anova22 <- lm(data = biometry, bmi ~ age_rec1 * genre)) 
-tabularise(biomano)
+
 
 library(dplyr)
 library(ggplot2)
 
-# Calcul des moyennes par groupe (age_rec1 x genre)
+# Calcul des moyennes par groupe (âge x genre)
 bmi_means <- biometry %>%
-  group_by(age_rec1, genre) %>%
-  summarise(bmi_mean = mean(bmi, na.rm = TRUE)) %>%
-  ungroup()
+  group_by(eau_rec, genre) %>%
+  summarise(bmi_mean = mean(bmi, na.rm = TRUE), .groups = "drop")
 
-# Graphique d'interaction
-ggplot(bmi_means, aes(x = age_rec1, y = bmi_mean, color = genre, group = genre)) +
+# Graphique d’interaction
+ggplot(bmi_means, aes(x = eau_rec, y = bmi_mean, color = genre, group = genre)) +
   geom_line(linewidth = 1) +
   geom_point(size = 2) +
-  labs(
-    title = "Graphique d'interaction : Effet de l'âge et du genre sur l'IMC",
-    x = "Tranche d'âge",
-    y = "IMC moyen",
-    color = "Genre"
-  ) +
-  theme_minimal()
+    labs(
+  title = "Graphique d'interaction : Effet de la consommation d'eau quotidienne et du genre sur l'IMC",
+  x = "Consommation d'eau quotidienne [L/jour]",
+  y = "IMC moyen",
+  color = "Genre"
+) +
+theme_minimal() +
+theme(
+  plot.title = element_text(size = 9)
+)
+
+
 
 
 ```
 
 <!--% Hypothèse nulle et alternative -->
 
--   **Effet principal de l'âge (`age_rec1`)**
+H0 : Les facteurs n'ont pas d'effet significatif sur la variable dépendante.
 
-    -   H₀₁ : Les moyennes de BMI sont égales pour tous les groupes d'âge.
-
-        H₁₁ : Au moins une moyenne diffère selon l'âge
-
-```{=html}
-<!-- -->
-```
--    **Effet principal du genre (`genre`)**
-
-    -   H₀₂ : Les moyennes de BMI sont égales pour tous les genres.
-
-        H₁₂ : Les moyennes de BMI diffèrent selon le genre.
-
-```{=html}
-<!-- -->
-```
--    **Interaction entre âge et genre (`age_rec1 * genre`)**
-
-    -   H₀₃ : Il **n\'y a pas d\'interaction** entre l\'âge et le genre sur le BMI.
-
-        H₁₃ : Il **existe une interaction** : l\'effet de l\'âge dépend du genre, ou vice versa.
+H1: Au moins un des deux facteurs a un effet significatif sur la variable dépendante ou il y a interaction entre les facteurs.
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_2}
+# Supprime les lignes avec NA
+biometry_clean <- biometry %>% filter(!is.na(bmi), !is.na(eau_rec), !is.na(genre))
+
+# Modèle ANOVA sur données nettoyées
+biomano <- lm(bmi ~ genre * eau_rec, data = biometry_clean)
+
+# Tableau ANOVA
+anova(biomano) |> tabularise()
+chart$qqplot(biomano)
+
+
+
 
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Le genre seul n'a pas d'effet significatif sur l'IMC. (p = 0.734)
+
+La consommation d'eau quotidienne a un effet significatif sur l'IMC.(p = 0.0135)
+
+Il n'y a pas d'intéraction significative entre le genre et la consommation d'eau quotidienne. (p = 0.5862)
+
+Les points situés sur le graphique quantile - quantile sont relativement alignés malgré quelques écarts aux extrémités, ce qui rend l'ANOVA valide.
 
 # Discussion et conclusions
 
