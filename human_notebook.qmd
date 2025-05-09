@@ -585,7 +585,7 @@ chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
-biometrya2f1 <- lm(data = biometry, bmi ~ eau_rec*Conso_cig)
+biometrya2f1 <- lm(data = biometry, bmi ~ fast_food_rec_yes_no*sucre_rec)
 anova(biometrya2f1) %>.%
   tabularise(.)
 
