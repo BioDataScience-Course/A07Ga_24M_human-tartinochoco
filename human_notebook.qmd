@@ -70,12 +70,11 @@ Analyse: Dans notre échantillon, les hommes ont globalement tendance à être p
 give_n2 <- function(x)
   c(y = max(x) * 1.1, label = length(x))
 chart(biometry, masse_corr~genre %fill=% alimentation)+
-  geom_boxplot()+
-  scale_fill_manual(values = c("mediumorchid1", "lightcoral", "lightgreen"))+
+  geom_boxplot()+ 
   stat_summary(fun.data=give_n2, geom= "text", hjust = 0.5, position = position_dodge(0.75))
 ```
 
-Analyse: Les omnivores sont prépondérants, tandis que les régimes carnivores et végétariens sont beaucoup plus rares. De plus, notre échantillon ne contient aucun homme végétarien.
+Analyse:
 
 ### Description par l'étudiant 2
 
@@ -537,6 +536,10 @@ chart(data=biometry, tour_taille~sucre_rec)+
 
 <!--% Hypothèse nulle et alternative -->
 
+H0 : Les moyennes sont égales.
+
+H1 : Au moins une des moyennes diffère des autres.
+
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova1_2}
@@ -555,7 +558,9 @@ par(oma)
 rm(oma)
 ```
 
-<!--% Interprétation statistique et biologique --> Il y a une différence significative entre les moyennes des personnes qui consoment régulièrement et jamais à rarement du scure au seuil alpha de 5% (ANOVA, Ddl =2&141, F = 4.81 et P-value= 0.00949
+<!--% Interprétation statistique et biologique -->
+
+Il y a une différence significative entre les moyennes des personnes qui consoment régulièrement et jamais à rarement du scure au seuil alpha de 5% (ANOVA, Ddl =2&141, F = 4.81 et P-value= 0.00949
 
 <!--# Travaillez jusqu'ici pour le module 9. Commencez à rédiger la partie résultats avec la description des données. -->
 
@@ -564,6 +569,14 @@ rm(oma)
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ```{r plot_anova2_1}
+table(biometry$fast_food_rec_yes_no, biometry$sucre_rec)
+
+biometry %>.%
+  sgroup_by(., fast_food_rec_yes_no, sucre_rec) %>.%
+  ssummarise(., BMI_moyen = mean(bmi, na.rm = TRUE)) %>.%
+chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_food_rec_yes_no) +
+    geom_line() +
+    geom_point()
 
 ```
 
@@ -572,7 +585,11 @@ rm(oma)
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova2_1}
+biometrya2f1 <- lm(data = biometry, bmi ~ fast_food_rec_yes_no*sucre_rec)
+anova(biometrya2f1) %>.%
+  tabularise(.)
 
+chart$qqplot(biometrya2f1)
 ```
 
 <!--% Interprétation statistique et biologique -->
