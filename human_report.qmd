@@ -53,16 +53,19 @@ Le but de cette recherche est de déterminer les différents facteurs qui influe
 <!--% Extrayez les quelques éléments les plus pertinents (3 à 5) de votre document `human_notebook.qmd` pour décrire les données de manière cohérente par rapport au but. Reprenez les interprétations en les reformulant de manière concise pour former un texte qui se lit en continu (donc un texte plus construit que ce que vous avez indiqué dans le bloc-notes). -->
 
 <!--# N'oubliez pas que ce document doit pouvoir compiler indépendamment du reste. Cela implique que vous ajoutiez un chunk d'importation des données et que vous recalculiez tout ce qui doit l'être... Par contre, un simple copier-coller de toute la partie résultats du bloc-notes ne sera pas considéré comme un travail réalisé : vous devez sélectionner, et éventuellement remanier un peu le code, pour ne conserver que ce qui est utile ici. -->
+
 ```{r, lecture des données}
 biometry<-read("data/biometry.rds")
 
 ```
+
 ```{r Calcul BMI}
 # Calcul de la ou des variables reprenant l'indice sous forme numérique (et facteur)
 biometry$bmi <- biometry$masse_corr/ (biometry$taille/100)^2
 label(biometry$bmi)<- "Indice de masse corporelle"
 units(biometry$bmi) <- "kg/m²"
 ```
+
 ```{r, Description 1}
 give_n <- function(x)
   c(y = max(x) * 1.03, label = length(x))
@@ -116,11 +119,13 @@ chart(data = biometry, ~ bmi %fill=% genre | sucre)+
   scale_y_continuous(breaks = seq(0, 15, by = 3))+
   labs(y="Effectifs", title = "Consommation de sucre")
 ```
+
 ## Tests d'hypothèses
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
 <!--% NUMERO 1 -->
+
 ```{r Test 1}
 ## Recodage de biometry$fast_food en biometry$fast_food_rec_yes_no
 biometry$fast_food_rec_yes_no <- cut(biometry$fast_food,
@@ -149,7 +154,7 @@ H_1 &: \overline{\text{BMI}}_{ff \leq 2} \neq \overline{\text{BMI}}_{ff > 3}
 \end{aligned}
 $$
 
- <!--% Vérification des conditions d'application -->
+<!--% Vérification des conditions d'application -->
 
 ```{r T2 Conditions}
 # Conversion en vecteur numérique 
@@ -160,7 +165,9 @@ car::qqPlot(biometry$bmi, distribution = "norm", envelope = 0.95, col = "blue")
 #Test 
 t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.level= 0.95, var.equal=TRUE)
 ```
+
 <!--% NUMERO 2 -->
+
 ```{r Test 2}
 ## Recodage de biometry$sucre en biometry$sucre_rec
 biometry$sucre_rec <- biometry$sucre %>%
@@ -182,8 +189,6 @@ H0 : Les moyennes sont égales.
 
 H1 : Au moins une des moyennes diffère des autres.
 
-
-
 <!--% Vérification des conditions d'application -->
 
 ```{r test_anova1_2}
@@ -203,6 +208,7 @@ rm(oma)
 ```
 
 <!--% NUMERO 3 -->
+
 ```{r Test 3}
 biometry %>.%
   sgroup_by(., fast_food_rec_yes_no, sucre_rec) %>.%
