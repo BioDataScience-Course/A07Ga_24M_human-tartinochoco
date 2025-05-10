@@ -55,7 +55,7 @@ Pour chacun des sujets, des calculs ont été réalisés afin de déterminer leu
 
 Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
 
-Les descriptions et analyses statistiques ont été réalisées sur RStudio dans sa version 4.3.0 sur la SciViews Box 2024 via la plateforme SaturnCloud (https://saturncloud.io). Cette étude se base sur différents tests d’hypothèses. 
+Les descriptions et analyses statistiques ont été réalisées sur le [logiciel R](https://www.r-project.org) dans sa version 4.3.0 sur la SciViews Box 2024 via la plateforme [SaturnCloud](https://saturncloud.io). Cette étude se base sur différents tests d’hypothèses. 
 
 # Résultats
 
