@@ -582,7 +582,7 @@ chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Il n'y a pas d'effet significatif du nombre de fast-food par mois et de la consommation de sucre sur le bmi, les moyennes sont égales indépendemment de ces facteurs .
+H0 : Il n'y a pas d'effet significatif du nombre de fast-food par mois et / ou de la consommation de sucre sur le bmi, les moyennes sont égales indépendemment de ces facteurs .
 
 H1 : Le nombre de fast-foods consommés par mois et / ou la consommation de sucre ont un effet significatif sur le bmi. Les moyennes des groupes diffèrent en fonction de ces facteurs.
 
@@ -598,7 +598,7 @@ chart$qqplot(biometrya2f1)
 
 <!--% Interprétation statistique et biologique -->
 
-Il n'y a pas d'interaction entre la consommation de sucre et le nombre de fast-food par mois sur la variable dépendantes bmi. Et il n'y a pas d'effet significatif des deux facteurs sur le bmi.
+Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu\'il n\'y a pas d\'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885).
 
 ### ANOVA à deux facteurs 2
 
