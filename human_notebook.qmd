@@ -582,9 +582,9 @@ chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Il n'y a pas d'effet significatifs des deux facteurs sur la variable dépendantes, les moyennes sont égales pour chaque facteur..
+H0 : Il n'y a pas d'effet significatif du nombre de fast-food par mois et de la consommation de sucre sur le bmi, les moyennes sont égales indépendemment de ces facteurs .
 
-H1 : Il y a un effet significatif d'au moins un des facteurs sur la variable dépendante, (les moyennes diffèrent ) ou il y a interaction entre les facteurs.
+H1 : Le nombre de fast-foods consommés par mois et / ou la consommation de sucre ont un effet significatif sur le bmi. Les moyennes des groupes diffèrent en fonction de ces facteurs.
 
 <!--% Vérification des conditions d'application -->
 
