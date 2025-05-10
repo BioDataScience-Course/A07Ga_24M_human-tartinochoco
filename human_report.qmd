@@ -36,7 +36,7 @@ L’obésité est un facteur de plus en plus fréquent dans la population actuel
 
 De nombreux facteurs peuvent être à l’origine de problèmes d’obésité. Parmi les plus fréquents, on reconnait entre autres les habitudes alimentaires, sportives, ou encore des prédispositions génétiques.
 
-Différentes techniques peuvent être employées pour tenter de quantifier l’obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l’Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG)[@khanna2022body]. L’indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s’appuiera sur l’utilisation de IMC et du PMG, sur un échantillon d’adultes de la province du Hainaut.
+Différentes techniques peuvent être employées pour tenter de quantifier l’obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l’Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG) [@khanna2022body]. L’indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s’appuiera sur l’utilisation de IMC et du PMG, sur un échantillon d’adultes de la province du Hainaut.
 
 # But
 
@@ -212,7 +212,7 @@ tabularise(bartlett.test(data=biometry,tour_taille ~sucre_rec))
 #Résidus qqplot
 chart$qqplot(sucre_lm, lang="fr")
 #post hoc
-tabularise(summary(sucre_confint<-confint(multcomp::glht(sucre_lm, linfct=multcomp::mcp(sucre_rec="Tukey")))))
+summary(sucre_confint<-confint(multcomp::glht(sucre_lm, linfct=multcomp::mcp(sucre_rec="Tukey"))))
 
 oma<-par(oma=c(0,9.5,0,0))
 plot(sucre_confint)
