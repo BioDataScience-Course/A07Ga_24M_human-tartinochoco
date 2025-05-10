@@ -135,7 +135,7 @@ chart(data = biometry, ~ bmi %fill=% genre | sucre)+
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
-###1
+### 1
 <!--% NUMERO 1 -->
 
 ```{r Test 1}
@@ -175,10 +175,10 @@ biometry$bmi <- as.numeric(biometry$bmi)
 car::qqPlot(biometry$bmi, distribution = "norm", envelope = 0.95, col = "blue")
 
 #Test 
-t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.level= 0.95, var.equal=TRUE)
+tabularise(t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.level= 0.95, var.equal=TRUE))
 ```
 
-###2
+### 2
 <!--% NUMERO 2 -->
 
 ```{r Test 2}
@@ -208,11 +208,11 @@ H1 : Au moins une des moyennes diffère des autres.
 sucre_lm<-lm(data= biometry, tour_taille ~sucre_rec)
 tabularise(anova(sucre_lm))
 #Vérif homoscédasticité
-bartlett.test(data=biometry,tour_taille ~sucre_rec)
+tabularise(bartlett.test(data=biometry,tour_taille ~sucre_rec))
 #Résidus qqplot
 chart$qqplot(sucre_lm, lang="fr")
 #post hoc
-summary(sucre_confint<-confint(multcomp::glht(sucre_lm, linfct=multcomp::mcp(sucre_rec="Tukey"))))
+tabularise(summary(sucre_confint<-confint(multcomp::glht(sucre_lm, linfct=multcomp::mcp(sucre_rec="Tukey")))))
 
 oma<-par(oma=c(0,9.5,0,0))
 plot(sucre_confint)
@@ -220,7 +220,7 @@ par(oma)
 rm(oma)
 ```
 
-###3
+### 3
 <!--% NUMERO 3 -->
 
 ```{r Test 3}
@@ -233,6 +233,21 @@ chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_
 
 ```
 
+<!--% Hypothèse nulle et alternative -->
+
+H0 : Il n'y a pas d'effet significatif du nombre de fast-food par mois et / ou de la consommation de sucre sur le bmi, les moyennes sont égales indépendemment de ces facteurs .
+
+H1 : Le nombre de fast-foods consommés par mois et / ou la consommation de sucre ont un effet significatif sur le bmi. Les moyennes des groupes diffèrent en fonction de ces facteurs.
+
+<!--% Vérification des conditions d'application -->
+
+```{r Test 3bis}
+biometrya2f1 <- lm(data = biometry, bmi ~ fast_food_rec_yes_no*sucre_rec)
+anova(biometrya2f1) %>.%
+  tabularise(.)
+
+chart$qqplot(biometrya2f1)
+```
 # Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
