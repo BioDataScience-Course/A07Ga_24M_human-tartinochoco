@@ -32,19 +32,30 @@ SciViews::R("model", "infer", lang = "fr")
 
 <!--# Ce projet porte sur la santé humaine liée à l'obésité, à la façon de se nourrir et aux activités réalisées (plus ou moins sédentaire ou actif) ... Réalisez des recherches bibliographiques afin d'avoir une vision précise de la thématique. Existe-t-il des indicateurs calculables pour quantifier l'état de santé d'un individu, par exemple ? Naturellement, ces indicateurs doivent être calculables sur bases des variables mesurées dans votre jeu de données. Focalisez-vous donc sur ces variables-là. -->
 
-...Votre introduction ici...
+L’obésité est un facteur de plus en plus fréquent dans la population actuelle. Cette pathologie peut mener à des problèmes de santé, tels que des troubles respiratoires, des douleurs articulaires, des problèmes hépatiques ou encore des maladies cardiovasculaires ou cancéreuses. L’obésité est aussi au cœur d’enjeux sociétaux, notamment en ce qui concerne les frais de santé publique ou la perte de productivité
+
+De nombreux facteurs peuvent être à l’origine de problèmes d’obésité. Parmi les plus fréquents, on reconnait entre autres les habitudes alimentaires, sportives, ou encore des prédispositions génétiques.
+
+Différentes techniques peuvent être employées pour tenter de quantifier l’obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l’Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG)[@khanna2022body]. L’indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s’appuiera sur l’utilisation de IMC et du PMG, sur un échantillon d’adultes de la province du Hainaut.
 
 # But
 
 <!--% Formulez ici de façon concise et précise votre question de recherche en 1 à 2 phrases. -->
 
 Le but de cette recherche est de déterminer les différents facteurs qui influencent l'apparition de l'obésité chez les personnes âgées de 18 à 80 ans.
+Cette étude se concentre sur l’aspect nutritionnel lié à l’obésité. L’objectif est d’évaluer l’impact de la consommation en fast-food,  sucre et eau sur les deux grandes valeurs indicatrices utilisés pour évaluer l’obésité.
 
 # Matériel et méthodes
 
 <!--% Cette section doit comprendre une explication technique sur les mesures effectuées et sur le protocole relatif à l'acquisition des données en 3 à 4 paragraphes. Vous ajouterez aussi un paragraphe qui détaille les outils logiciels et statistiques utilisés (logiciels et versions des logiciels). Un simple copier-coller du matériel et méthodes du bloc-notes ne sera PAS considéré comme acceptable. -->
 
-...Votre matmet ici...
+Un échantillonnage a été réalisé sur des adultes vivant en province de Hainaut par chacun des étudiants du cours de Science des Données I de l’UMONS. Des dispositions ont été prises afin de faciliter un bon regroupement et une standardisation des données. En plus de l’élaboration d’un dictionnaire de données, les balances employées ont été intercalibrées. Toutes les données ont été récoltées en prêtant attention au bon respect du Règlement Général de la Protection des Données (RGPD).
+
+Pour chacun des sujets, des calculs ont été réalisés afin de déterminer leur IMC et leur PMG. Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
+
+Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
+
+Les descriptions et analyses statistiques ont été réalisées sur RStudio dans sa version 4.3.0 sur la SciViews Box 2024 via la plateforme SaturnCloud (https://saturncloud.io). Cette étude se base sur différents tests d’hypothèses. 
 
 # Résultats
 
@@ -124,6 +135,7 @@ chart(data = biometry, ~ bmi %fill=% genre | sucre)+
 
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
+###1
 <!--% NUMERO 1 -->
 
 ```{r Test 1}
@@ -166,6 +178,7 @@ car::qqPlot(biometry$bmi, distribution = "norm", envelope = 0.95, col = "blue")
 t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.level= 0.95, var.equal=TRUE)
 ```
 
+###2
 <!--% NUMERO 2 -->
 
 ```{r Test 2}
@@ -207,6 +220,7 @@ par(oma)
 rm(oma)
 ```
 
+###3
 <!--% NUMERO 3 -->
 
 ```{r Test 3}
