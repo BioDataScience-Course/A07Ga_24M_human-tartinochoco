@@ -1,5 +1,5 @@
 ---
-title: "L'influence de ... sur l'obésité "
+title: "L'impact de la fréquence de consommation de fast-food, d'eau et de sucre sur l'obésité "
 author: "Louis Carlier, Samuel Aragona, Eva Dupont, Julien-Camille Tack"
 date: "`r Sys.Date()`"
 format:
@@ -32,30 +32,29 @@ SciViews::R("model", "infer", lang = "fr")
 
 <!--# Ce projet porte sur la santé humaine liée à l'obésité, à la façon de se nourrir et aux activités réalisées (plus ou moins sédentaire ou actif) ... Réalisez des recherches bibliographiques afin d'avoir une vision précise de la thématique. Existe-t-il des indicateurs calculables pour quantifier l'état de santé d'un individu, par exemple ? Naturellement, ces indicateurs doivent être calculables sur bases des variables mesurées dans votre jeu de données. Focalisez-vous donc sur ces variables-là. -->
 
-L’obésité est un facteur de plus en plus fréquent dans la population actuelle. Cette pathologie peut mener à des problèmes de santé, tels que des troubles respiratoires, des douleurs articulaires, des problèmes hépatiques ou encore des maladies cardiovasculaires ou cancéreuses. L’obésité est aussi au cœur d’enjeux sociétaux, notamment en ce qui concerne les frais de santé publique ou la perte de productivité
+L'obésité est un facteur de plus en plus fréquent dans la population actuelle. Cette pathologie peut mener à des problèmes de santé, tels que des troubles respiratoires, des douleurs articulaires, des problèmes hépatiques ou encore des maladies cardiovasculaires ou cancéreuses. L'obésité est aussi au cœur d'enjeux sociétaux, notamment en ce qui concerne les frais de santé publique ou la perte de productivité
 
-De nombreux facteurs peuvent être à l’origine de problèmes d’obésité. Parmi les plus fréquents, on reconnait entre autres les habitudes alimentaires, sportives, ou encore des prédispositions génétiques.
+De nombreux facteurs peuvent être à l'origine de problèmes d'obésité. Parmi les plus fréquents, on reconnait entre autres les habitudes alimentaires, sportives, ou encore des prédispositions génétiques.
 
-Différentes techniques peuvent être employées pour tenter de quantifier l’obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l’Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG) [@khanna2022body]. L’indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s’appuiera sur l’utilisation de IMC et du PMG, sur un échantillon d’adultes de la province du Hainaut.
+Différentes techniques peuvent être employées pour tenter de quantifier l'obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l'Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG) [@khanna2022body]. L'indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s'appuiera sur l'utilisation de IMC et du PMG, sur un échantillon d'adultes de la province du Hainaut.
 
 # But
 
 <!--% Formulez ici de façon concise et précise votre question de recherche en 1 à 2 phrases. -->
 
-Le but de cette recherche est de déterminer les différents facteurs qui influencent l'apparition de l'obésité chez les personnes âgées de 18 à 80 ans.
-Cette étude se concentre sur l’aspect nutritionnel lié à l’obésité. L’objectif est d’évaluer l’impact de la consommation en fast-food,  sucre et eau sur les deux grandes valeurs indicatrices utilisés pour évaluer l’obésité.
+Le but de cette recherche est de déterminer les différents facteurs qui influencent l'apparition de l'obésité chez les personnes âgées de 18 à 80 ans. Cette étude se concentre sur l'aspect nutritionnel lié à l'obésité. L'objectif est d'évaluer l'impact de la consommation en fast-food, sucre et eau sur les deux grandes valeurs indicatrices utilisés pour évaluer l'obésité.
 
 # Matériel et méthodes
 
 <!--% Cette section doit comprendre une explication technique sur les mesures effectuées et sur le protocole relatif à l'acquisition des données en 3 à 4 paragraphes. Vous ajouterez aussi un paragraphe qui détaille les outils logiciels et statistiques utilisés (logiciels et versions des logiciels). Un simple copier-coller du matériel et méthodes du bloc-notes ne sera PAS considéré comme acceptable. -->
 
-Un échantillonnage a été réalisé sur des adultes vivant en province de Hainaut par chacun des étudiants du cours de Science des Données I de l’UMONS. Des dispositions ont été prises afin de faciliter un bon regroupement et une standardisation des données. En plus de l’élaboration d’un dictionnaire de données, les balances employées ont été intercalibrées. Toutes les données ont été récoltées en prêtant attention au bon respect du Règlement Général de la Protection des Données (RGPD).
+Un échantillonnage a été réalisé sur des adultes vivant en province de Hainaut par chacun des étudiants du cours de Science des Données I de l'UMONS. Des dispositions ont été prises afin de faciliter un bon regroupement et une standardisation des données. En plus de l'élaboration d'un dictionnaire de données, les balances employées ont été intercalibrées. Toutes les données ont été récoltées en prêtant attention au bon respect du Règlement Général de la Protection des Données (RGPD).
 
 Pour chacun des sujets, des calculs ont été réalisés afin de déterminer leur IMC et leur PMG. Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
 
 Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
 
-Les descriptions et analyses statistiques ont été réalisées sur le [logiciel R](https://www.r-project.org) dans sa version 4.3.0 sur la SciViews Box 2024 via la plateforme [SaturnCloud](https://saturncloud.io). Cette étude se base sur différents tests d’hypothèses. 
+Les descriptions et analyses statistiques ont été réalisées sur le [logiciel R](https://www.r-project.org) dans sa version 4.3.0 sur la SciViews Box 2024 via la plateforme [SaturnCloud](https://saturncloud.io). Cette étude se base sur différents tests d'hypothèses.
 
 # Résultats
 
@@ -136,6 +135,7 @@ chart(data = biometry, ~ bmi %fill=% genre | sucre)+
 <!--% Sélectionnez les 4 tests d'hypothèses les plus pertinents depuis `human_notebook.qmd`, ainsi bien sûr que les calculs des indices nécessaires que vous placerez juste au-dessus de vos tests. Ces tests doivent répondre à votre question de recherche (le but). Reformulez les interprétations pour former un texte qui se lit en continu. -->
 
 ### 1
+
 <!--% NUMERO 1 -->
 
 ```{r Test 1}
@@ -179,6 +179,7 @@ tabularise(t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.si
 ```
 
 ### 2
+
 <!--% NUMERO 2 -->
 
 ```{r Test 2}
@@ -221,6 +222,7 @@ rm(oma)
 ```
 
 ### 3
+
 <!--% NUMERO 3 -->
 
 ```{r Test 3}
@@ -248,11 +250,22 @@ anova(biometrya2f1) %>.%
 
 chart$qqplot(biometrya2f1)
 ```
+
 # Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
 
-...Vos conclusions ici...
+Les résultats montrent que l'obésité ne dépend pas uniquement d'un seul facteur,mais bel et bien de notre mode de vie au quotidien.
+
+Tout d'abord, aussi surprenant que cela puisse paraître, les personnes consommant moins d'eau que les recommandations sont globalement plus maigres que celles qui en consomment suffisament. La quantité d'eau consommée par jour n'a donc aucun impact direct sur l'obésité.
+
+En revanche, concernant l'influence du nombre de minutes d'activité physique par semaine, les résultats montrent que la majorité des personnes qui ne pratiquant aucune activité physique par semaine ont tendance à être plus souvent en surpoids que celles qui sont physiquement actives. Il existerait donc un lien entre la quantité d'exercice et l'obésité.
+
+Ensuite la consommation de sucre par semaine ne montre pas d'influence significative sur le BMI. Il existe tout de même quelque cas extrême,pouvant notamment s'expliquer par d'autres facteurs comme, par exemple, le métabolisme de l\'individu.
+
+Enfin les tests ont démontré que les personnes consommant beaucoup de fast-food par mois n'ont pas un BMI plus élévé que celles qui en mangent très peu.
+
+En conclusion, l'obésité est un problème qui résulte de l'accumulation de plusieurs facteurs en même temps. En effet, les facteurs pris isolément n'ont généralement pas d'impact sur l'obésité à l'exception de l'activité physique mais si plusieurs facteurs se combinent chez un même individus, cela pourrait fortement augmenter les risques d'obésité.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
