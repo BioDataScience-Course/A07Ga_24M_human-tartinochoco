@@ -330,8 +330,8 @@ Le genre a significativement au seuil alpha = 5% un impact sur le pourcentage de
 ```{r plot_chi2_2}
 biometry$tour_poignet_rec <- cut(biometry$tour_poignet,
   right = FALSE,
-  breaks = c(10, 15, 20, 25),  
-  labels = c("Petit", "Moyen", "Grand" ), 
+  breaks = c(-Inf,17, Inf),  
+  labels = c("Petit", "Grand" ), 
   include.lowest = TRUE  
 )
 table_contingence2 <- table(biometry$tour_poignet_rec, biometry$pmg_rec)
@@ -340,17 +340,21 @@ tabularise(table_contingence2)
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Il y a dépendance entre le tour du poignet et le pourcentage de masse grasse.
+H0 : Le pourcentage de masse grasse n'a pas d'impact sur le tour de poignet.
 
-H1 : Il y a indépendance entre le tour du poignet et le pourcentage de masse grasse.
+H1 : Le pourcentage de masse grasse a un impact sur le tour de poignet.
 
 <!--% Vérification des conditions d'application -->
 
 ```{r test_chi2_2}
-chisq.test(table_contingence2)
+chisqtest2 <-chisq.test(table_contingence2)
+tabularise(chisqtest2)
+table(table_contingence2)
 ```
 
 <!--% Interprétation statistique et biologique -->
+
+Le pourcentage de masse grasse a significativement un impact sur le tour de poignet au seuil alpha de 5% (X²obs = 9.91 ; Ddl = 3; Valeur de p = 0.0193)
 
 <!--# Travaillez jusqu'ici pour le module 7. -->
 
