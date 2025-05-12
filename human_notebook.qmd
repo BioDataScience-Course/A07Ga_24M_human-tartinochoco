@@ -580,7 +580,8 @@ biometry %>.%
   ssummarise(., BMI_moyen = mean(bmi, na.rm = TRUE)) %>.%
 chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_food_rec_yes_no) +
     geom_line() +
-    geom_point()
+    geom_point()+
+  labs(title="Graphique d'interraction")
 
 ```
 
@@ -610,31 +611,13 @@ Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu\'il n\'y a pas d
 
 ```{r plot_anova2_2}
 
-
-library(dplyr)
-library(ggplot2)
-
-# Calcul des moyennes par groupe (âge x genre)
-bmi_means <- biometry %>%
-  group_by(eau_rec, genre) %>%
-  summarise(bmi_mean = mean(bmi, na.rm = TRUE), .groups = "drop")
-
-# Graphique d’interaction
-ggplot(bmi_means, aes(x = eau_rec, y = bmi_mean, color = genre, group = genre)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-    labs(
-  title = "Graphique d'interaction : Effet de la consommation d'eau quotidienne et du genre sur l'IMC",
-  x = "Consommation d'eau quotidienne [L/jour]",
-  y = "IMC moyen",
-  color = "Genre"
-) +
-theme_minimal() +
-theme(
-  plot.title = element_text(size = 9)
-)
-
-
+biometry %>.%
+  sgroup_by(., eau_rec, genre) %>.%
+  ssummarise(., BMI_moyen = mean(bmi, na.rm = TRUE)) %>.%
+chart(data = ., BMI_moyen ~ eau_rec %col=%genre  %group=% genre) +
+    geom_line() +
+    geom_point()+
+  labs(title="Graphique d'interraction")
 
 
 ```
@@ -657,9 +640,6 @@ biomano <- lm(bmi ~ genre * eau_rec, data = biometry_clean)
 # Tableau ANOVA
 anova(biomano) |> tabularise()
 chart$qqplot(biomano)
-
-
-
 
 ```
 
