@@ -145,7 +145,7 @@ biometry$fast_food_rec_yes_no <- cut(biometry$fast_food,
   right = FALSE,
   dig.lab = 4,
   breaks = c(-100, 2.1, 1000),
-  labels=c("0-2", ">=3")
+  labels=c("0-2", "≥3")
 )
 label(biometry$fast_food_rec_yes_no)<- "Consommation de fast-food"
 units(biometry$fast_food_rec_yes_no) <- "nombre/mois"
@@ -231,7 +231,8 @@ biometry %>.%
   ssummarise(., BMI_moyen = mean(bmi, na.rm = TRUE)) %>.%
 chart(data = ., BMI_moyen ~ sucre_rec %col=%fast_food_rec_yes_no  %group=% fast_food_rec_yes_no) +
     geom_line() +
-    geom_point()
+    geom_point()+
+    labs(y="IMC moyen", title = "Graphique d'interraction")
 
 ```
 
@@ -263,7 +264,7 @@ biometry %>.%
 chart(data = ., BMI_moyen ~ eau_rec %col=%genre  %group=% genre) +
     geom_line() +
     geom_point()+
-  labs(title="Graphique d'interraction")
+  labs(title="Graphique d'interraction", y = "IMC moyen", x="Consommation d'eau [L/j]")
 
 
 ```
@@ -295,20 +296,16 @@ Ensuite, une autre analyse a été réalisée pour étudier l’effet de la cons
 
 Une autre analyse a été utilisée pour examiner les effets combinés des fast-foods et du sucre sur l’IMC. Les résultats montrent que ni la consommation de fast-food (F = 0,334 , ddl = 1 et 137, p = 0,558) ni celle de sucre (F = 1,446, ddl = 2 et 137, p= 0,239) n’ont d’effet significatif au seuil α de 5% sur l’IMC. De plus, aucune interaction significative au seuil α de 5% n’est observé entre ces facteurs (ANOVA à deux facteurs, F =0,123 , ddl = 2 et 137, p = 0,885), ce qui signifie que leur influence combinée n’a pas d’impact mesurable sur les variations de l’IMC.
 
-Une dernière analyse a été réalisée pour examiner une éventuelle relation entre la consommation d’eau et l’IMC. Les résultats montrent un effet significatif de la consommation d’eau sur l’IMC au seuil α de 5% (ANOVA, F = 4,441, ddl = 2 & 137, valeur p= 0,0135). En revanche, aucune interaction significative au seuil α de 5% n’est observée entre le genre et la consommation d’eau (F = 0,536, ddl = 2 & 137, p = 0,5862), indiquant que l’influence combinée de ces facteurs sur l’IMC n’est pas mesurable.
+Une dernière analyse a été réalisée pour examiner une éventuelle relation entre la consommation d’eau et l’IMC. Les résultats montrent un effet significatif de la consommation d’eau sur l’IMC au seuil α de 5% (ANOVA, F = 4,441, ddl = 2 & 137, valeur p= 0,0135). En revanche, aucune interaction significative au seuil α de 5% n’est observée entre le genre et la consommation d’eau (F = 0,536, ddl = 2 & 137, p = 0,5862), indiquant qu'e l’influence combinée de ces facteurs sur l’IMC n’est pas mesurable'il n'y a pas d'interraction.
 
 
 # Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
 
-Les personnes consommant moins d'eau que les recommandations sont globalement plus maigres que celles qui en consomment suffisamment. Cela est assez surprenant, car on pourrait penser qu'une bonne hydratation favorise une meilleure hygiène de vie. 
+L'étude montre que la consommation de fast-food n'a pas d'effet significatif sur l'IMC, ce qui suggère que l'obésité est influencée par des facteurs plus complexes qu’uniquement l’alimentation. En revanche, une forte consommation de sucre est associée à une augmentation du tour de taille, comme établi antérieurement par @buso2023sugar. Et ce possiblement en raison de son effet sur l’insuline et le stockage des graisses.
 
-En revanche, concernant l'influence du nombre de minutes d'activité physique par semaine, les résultats montrent que la majorité des personnes qui ne pratiquant aucune activité physique par semaine ont tendance à être plus souvent en surpoids que celles qui sont physiquement actives. Il existerait donc un lien entre la quantité d'exercice et l'obésité.
-
-Ensuite la consommation de sucre par semaine ne montre pas d'influence significative sur le BMI. Il existe tout de même quelque cas extrême,pouvant notamment s'expliquer par d'autres facteurs comme, par exemple, le métabolisme de l'individu.
-
-Enfin les tests ont démontré que les personnes consommant beaucoup de fast-food par mois n'ont pas un BMI plus élévé que celles qui en mangent très peu.
+Un résultat surprenant concerne la consommation d'eau : ceux qui en consomment moins tendent à avoir un IMC plus faible, ce qui va à l'encontre des recommandations habituelles sur l'hydratation. Cela pourrait potentiellement être dû à un mauvais échantillonnage, ou simplement au fait que ce sont les sodas qui ont un impact réel sur le BMI, comme proposé par @chen2024water.
 
 En conclusion, l'obésité est un problème qui résulte de l'accumulation de plusieurs facteurs en même temps,. En effet, les facteurs pris isolément n'ont généralement pas d'impact sur l'obésité mais cependant, si plusieurs facteurs se combinent chez un même individus, cela pourrait fortement augmenter les risques d'obésité. Une approche globale s'avère donc essentielle pour mieux comprendre et prévenir l'obésité.
 
