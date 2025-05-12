@@ -161,8 +161,8 @@ chart(data= biometry, bmi~fast_food_rec_yes_no)+
 
 $$
 \begin{aligned}
-H_0 &: \overline{\text{BMI}}_{ff \leq 2} = \overline{\text{BMI}}_{ff > 3} \\
-H_1 &: \overline{\text{BMI}}_{ff \leq 2} \neq \overline{\text{BMI}}_{ff > 3}
+H_0 &: \overline{\text{BMI}}_{ff \leq 2} = \overline{\text{BMI}}_{ff \geq 3} \\
+H_1 &: \overline{\text{BMI}}_{ff \leq 2} \neq \overline{\text{BMI}}_{ff \geq 3}
 \end{aligned}
 $$
 
