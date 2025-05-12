@@ -305,7 +305,7 @@ Tout d'abord, aussi surprenant que cela puisse paraître, les personnes consomma
 
 En revanche, concernant l'influence du nombre de minutes d'activité physique par semaine, les résultats montrent que la majorité des personnes qui ne pratiquant aucune activité physique par semaine ont tendance à être plus souvent en surpoids que celles qui sont physiquement actives. Il existerait donc un lien entre la quantité d'exercice et l'obésité.
 
-Ensuite la consommation de sucre par semaine ne montre pas d'influence significative sur le BMI. Il existe tout de même quelque cas extrême,pouvant notamment s'expliquer par d'autres facteurs comme, par exemple, le métabolisme de l\'individu.
+Ensuite la consommation de sucre par semaine ne montre pas d'influence significative sur le BMI. Il existe tout de même quelque cas extrême,pouvant notamment s'expliquer par d'autres facteurs comme, par exemple, le métabolisme de l'individu.
 
 Enfin les tests ont démontré que les personnes consommant beaucoup de fast-food par mois n'ont pas un BMI plus élévé que celles qui en mangent très peu.
 

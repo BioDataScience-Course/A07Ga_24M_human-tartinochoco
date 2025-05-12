@@ -603,7 +603,7 @@ chart$qqplot(biometrya2f1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu\'il n\'y a pas d\'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885).
+Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu'il n'y a pas d'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885).
 
 ### ANOVA à deux facteurs 2
 
@@ -657,15 +657,15 @@ Les points situés sur le graphique quantile - quantile sont relativement align�
 
 <!--% Reprenez ci-dessous sous forme d'éléments de listes brefs les résultats les plus importants que vous retirez de votre analyse. Ils doivent vous guider pour décider quels tests (les plus intéressants) vous allez conserver dans le rapport. -->
 
--   ...
+-   Les hommes ont globalement une taille plus grande que les femmes.
 
--   ...
+-   Il y a beaucoup plus d'individus qui ne boivent pas la consommation recommandée d'eau ( minimum2L/jour). Ces individus sont généralement plus minces que celles buvant suffisamment d'eau.
 
--   ...
+-   Il y a beaucoup plus de personnes pratiquant peu de sport par semaine ( moins de 100 min/ sem ). La plupart de ces personnes sont omnivores.
 
--   ...
+-   Les personnes consommant régulièrement et souvent du sucre ont une moyenne de masse plus ou moins la même. Mais il existe de nombreux points extrêmes chez les personns consommant souvent du sucre.
 
--   ...
+-   L'IMC est plus important chez les personnes consommant régulièrement et souvent du sucre. De plus l'IMC est plus importants chez les hommes de chez catégories que ailleurs.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
