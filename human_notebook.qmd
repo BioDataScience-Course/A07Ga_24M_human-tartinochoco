@@ -602,7 +602,7 @@ chart$qqplot(biometrya2f1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu\'il n\'y a pas d\'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885).
+Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu'il n'y a pas d'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885).
 
 ### ANOVA à deux facteurs 2
 
