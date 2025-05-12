@@ -440,37 +440,6 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 
 ```
 
-```{r à virer asap}
-#verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
-#chart(ad, ~bmi_trie)+
-#  geom_histogram(bins=15)
-
-verif_bmi<-data.frame(ID=1:143, bmi_trie = sort(biometry$bmi))
-az<-chart(verif_bmi, ~bmi_trie)+
-  geom_histogram(bins=15)
-verif_bmi$bmi_trie <- as.numeric(verif_bmi$bmi_trie)
-car::qqPlot(verif_bmi$bmi_trie, distribution = "norm", envelope = 0.95, col = "blue")
-
-verif_pmg<-data.frame(ID=1:143, pmg_trie = sort(biometry$pmg))
-ae<-chart(verif_pmg, ~pmg_trie)+
-  geom_histogram(bins=15)
-verif_pmg$pmg_trie <- as.numeric(verif_pmg$pmg_trie)
-car::qqPlot(verif_pmg$pmg_trie, distribution = "norm", envelope = 0.95, col = "blue")
-
-verif_TTT<-data.frame(ID=1:143, TTT_trie = sort(biometry$ratio_TTT))
-ar<-chart(verif_TTT, ~TTT_trie)+
-  geom_histogram(bins=15)
-verif_TTT$TTT_trie <- as.numeric(verif_TTT$TTT_trie)
-car::qqPlot(verif_TTT$TTT_trie, distribution = "norm", envelope = 0.95, col = "blue")
-
-verif_IRC<-data.frame(ID=1:143, IRC_trie = sort(biometry$IRC))
-at<-chart(verif_IRC, ~IRC_trie)+
-  geom_histogram(bins=15)
-verif_IRC$IRC_trie <- as.numeric(verif_IRC$IRC_trie)
-car::qqPlot(verif_IRC$IRC_trie, distribution = "norm", envelope = 0.95, col = "blue")
-# Combinaison des histogrammes
-combine_charts(list(az,ae,ar,at))
-```
 
 <!--% Interprétation statistique et biologique -->
 
