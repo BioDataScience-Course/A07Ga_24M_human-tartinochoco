@@ -1,5 +1,5 @@
 ---
-title: "L'impact de la fréquence de consommation de fast-food, d'eau et de sucre sur l'obésité "
+title: "L'impact de la consommation de fast-food, d'eau et de sucre sur l'obésité "
 author: "Louis Carlier, Samuel Aragona, Eva Dupont, Julien-Camille Tack"
 date: "`r Sys.Date()`"
 format:
