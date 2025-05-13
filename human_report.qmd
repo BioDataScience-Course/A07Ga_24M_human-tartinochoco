@@ -36,7 +36,7 @@ L'obésité est un facteur de plus en plus fréquent dans la population actuelle
 
 De nombreux facteurs peuvent être à l'origine de problèmes d'obésité. Parmi les plus fréquents, on reconnait entre autres les habitudes alimentaires, sportives, ou encore des prédispositions génétiques.
 
-Différentes techniques peuvent être employées pour tenter de quantifier l'obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l'Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG) [@khanna2022body]. L'indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s'appuiera sur l'utilisation de IMC et du PMG, sur un échantillon d'adultes de la province du Hainaut.
+Différentes techniques peuvent être employées pour tenter de quantifier l'obésité des individus [@lebacq2015]. Les plus fréquemment usités sont l'Indice de Masse Corporelle (IMC) et le Pourcentage de Masse Grasse (PMG) [@khanna2022body]. L'indice de Rondeur Corporelle (IRC) existe mais est moins souvent employé. Ce présent travail s'appuiera sur l'utilisation de l'IMC sur un échantillon d'adultes de la province du Hainaut.
 
 # But
 
@@ -50,7 +50,7 @@ Le but de cette recherche est de déterminer les différents facteurs qui influe
 
 Un échantillonnage a été réalisé sur des adultes vivants en province de Hainaut par chacun des étudiants du cours de Science des Données I de l'UMONS. Des dispositions ont été prises afin de faciliter un bon regroupement et une standardisation des données. En plus de l'élaboration d'un dictionnaire de données, les balances employées ont été intercalibrées. Toutes les données ont été récoltées en prêtant attention au bon respect du Règlement Général de la Protection des Données (RGPD).
 
-Pour chacun des sujets, des calculs ont été réalisés afin de déterminer leur IMC et leur PMG. Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
+Pour chacun des sujets, des calculs ont été réalisés afin de déterminer leur IMC. Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
 
 Des groupes ont été constitués en fonction de différents critères (fréquence de consommation de sucre, habitudes alimentaires, activité physique) afin d'identifier les facteurs de risque et les éventuelles disparités selon les sous-groupes.
 
@@ -75,6 +75,11 @@ biometry$bmi <- biometry$masse_corr/ (biometry$taille/100)^2
 label(biometry$bmi)<- "Indice de masse corporelle"
 units(biometry$bmi) <- "kg/m²"
 ```
+
+$$
+IMC = \frac{\text{Poids (kg)}}{\text{Taille (m)}^2}
+$$
+D'après @lebacq2015.
 
 ```{r, Description 1}
 give_n <- function(x)

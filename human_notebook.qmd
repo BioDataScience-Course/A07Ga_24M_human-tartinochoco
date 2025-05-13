@@ -175,6 +175,10 @@ label(biometry$bmi)<- "Indice de masse corporelle"
 units(biometry$bmi) <- "kg/m²"
 ```
 
+$$
+IMC = \frac{\text{Poids (kg)}}{\text{Taille (m)}^2}
+$$
+D'après @lebacq2015.
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice1}
@@ -207,6 +211,11 @@ label(biometry$pmg)<- "Pourcentage de masse grasse"
 units(biometry$pmg) <- "%"
 ```
 
+$$
+PMG (\%) = 64.5 - 848 \times \frac{1}{\text{bmi}} + 0.079 \times \text{age} - 16.4 \times \text{genre} + 0.05 \times \text{genre} \times \text{age} + 39 \times \text{genre} \times \frac{1}{\text{bmi}}
+$$
+Le genre prend ici la forme d'une valeur chiffrée; 0 pour les femmes et 1 pour les hommes [@gallagher2000healthy].
+
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
 ```{r plot_indice2}
@@ -233,6 +242,10 @@ biometry$IRC <- 364.2 - 365.5 * sqrt(1 - ((biometry$tour_taille/3.14159265) / bi
 label(biometry$IRC)<- "Indice de rondeur corporelle"
 units(biometry$IRC)<- ""
 ```
+
+$$
+IRC = 364.2 - 365.5 \times \sqrt{1 - \left( \frac{\text{tour de taille}}{\pi \times \text{taille}} \right)^2}
+$$
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
@@ -263,6 +276,11 @@ biometry$ratio_TTT<-(biometry$tour_taille/biometry$taille)
 label(biometry$ratio_TTT)<- "Ratio entre le tour de taille et la taille de l'individu"
 units(biometry$ratio_TTT)<- "NA"
 ```
+
+$$
+TTT = \frac{\text{tour de taille}}{\text{taille}}
+$$
+D'après @lebacq2015.
 
 <!--% Graphique ou tableau utilisant l'indice calculé.-->
 
