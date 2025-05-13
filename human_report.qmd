@@ -252,10 +252,10 @@ anova(biometrya2f1) %>.%
 chart$qqplot(biometrya2f1)
 ```
 
-
 <!--% Graphique ou tableau présentant les données par rapport au test à réaliser. -->
 
 ### 4
+
 ```{r Test 4}
 
 biometry %>.%
@@ -290,20 +290,19 @@ chart$qqplot(biomano)
 
 ```
 
-Tout d’abord, une analyse a été réalisée pour examiner une éventuelle relation entre la fréquence de consommation de fast-food et l’IMC. Les résultats n’ont pas montré de différence significative au seuil α de 5% pour l’IMC entre les personnes qui consomment fréquemment des fast-foods et celles qui n’en consomment rarement voire jamais (test t bilatéral, t = 0,589 , ddl = 141, p= 0.557). 
+Tout d'abord, une analyse a été réalisée pour examiner une éventuelle relation entre la fréquence de consommation de fast-food et l'IMC. Les résultats n'ont pas montré de différence significative au seuil α de 5% pour l'IMC entre les personnes qui consomment fréquemment des fast-foods et celles qui n'en consomment rarement voire jamais (test t bilatéral, t = 0,589 , ddl = 141, p= 0.557).
 
-Ensuite, une autre analyse a été réalisée pour étudier l’effet de la consommation en sucre sur le tour de taille. Les résultats montrent un effet significatif au seuil α de 5%  (ANOVA, F= 4,81, ddl = 2 et 141, valeur p= 0,00949). Une analyse post-hoc permet de mettre en évidence une différence significative du tour de taille au seuil α de 5% entre les personnes consommant régulièrement du sucre et celles qui n’en consomment jamais à rarement (test HSD de Tukey, valeur p= 0,00687) 
+Ensuite, une autre analyse a été réalisée pour étudier l'effet de la consommation en sucre sur le tour de taille. Les résultats montrent un effet significatif au seuil α de 5% (ANOVA, F= 4,81, ddl = 2 et 141, valeur p= 0,00949). Une analyse post-hoc permet de mettre en évidence une différence significative du tour de taille au seuil α de 5% entre les personnes consommant régulièrement du sucre et celles qui n'en consomment jamais à rarement (test HSD de Tukey, valeur p= 0,00687)
 
-Une autre analyse a été utilisée pour examiner les effets combinés des fast-foods et du sucre sur l’IMC. Les résultats montrent que ni la consommation de fast-food (F= 0,334 , ddl= 1 et 137, p= 0,558) ni celle de sucre (F= 1,446, ddl= 2 et 137, p= 0,239) n’ont d’effet significatif au seuil α de 5% sur l’IMC. De plus, aucune interaction significative au seuil α de 5% n’est observé entre ces facteurs (ANOVA à deux facteurs, F= 0,123 , ddl = 2 et 137, p= 0,885), ce qui signifie que leur influence combinée n’a pas d’impact mesurable sur les variations de l’IMC.
+Une autre analyse a été utilisée pour examiner les effets combinés des fast-foods et du sucre sur l'IMC. Les résultats montrent que ni la consommation de fast-food (F= 0,334 , ddl= 1 et 137, p= 0,558) ni celle de sucre (F= 1,446, ddl= 2 et 137, p= 0,239) n'ont d'effet significatif au seuil α de 5% sur l'IMC. De plus, aucune interaction significative au seuil α de 5% n'est observé entre ces facteurs (ANOVA à deux facteurs, F= 0,123 , ddl = 2 et 137, p= 0,885), ce qui signifie que leur influence combinée n'a pas d'impact mesurable sur les variations de l'IMC.
 
-Une dernière analyse a été réalisée pour examiner une éventuelle relation entre la consommation d’eau et l’IMC. Les résultats montrent un effet significatif de la consommation d’eau sur l’IMC au seuil α de 5% (ANOVA, F= 4,441, ddl = 2 et 137, p= 0,0135). En revanche, aucune interaction significative au seuil α de 5% n’est observée entre le genre et la consommation d’eau (F= 0,536, ddl = 2 et 137, p= 0,5862), indiquant que l’influence combinée de ces facteurs sur l’IMC n’est pas mesurable'il n'y a pas d'interraction. Il convient toutefois de rester méfiant quant aux résultats de cette analyse, cette dernière se basant sur un très faible nombre d'individus dans certaines catégories.
-
+Une dernière analyse a été réalisée pour examiner une éventuelle relation entre la consommation d'eau et l'IMC. Les résultats montrent un effet significatif de la consommation d'eau sur l'IMC au seuil α de 5% (ANOVA, F= 4,441, ddl = 2 et 137, p= 0,0135). En revanche, aucune interaction significative au seuil α de 5% n'est observée entre le genre et la consommation d'eau (F= 0,536, ddl = 2 et 137, p= 0,5862), indiquant que l'influence combinée de ces facteurs sur l'IMC n'est pas mesurable'il n'y a pas d'interraction. Il convient toutefois de rester méfiant quant aux résultats de cette analyse, cette dernière se basant sur un très faible nombre d'individus dans certaines catégories.
 
 # Discussion et conclusions
 
 <!--% Reprenez les résultats obtenus, discutez-les d'un point de vue biologique en 4 à 5 paragraphes et concluez votre travail. Vous pouvez les mettre également en relation avec vos recherches bibliographiques dans cette section. -->
 
-L'étude montre que la consommation de fast-food n'a pas d'effet significatif sur l'IMC, ce qui suggère que l'obésité est influencée par des facteurs plus complexes qu’uniquement l’alimentation. En revanche, une forte consommation de sucre est associée à une augmentation du tour de taille, comme établi antérieurement par @buso2023sugar. Et ce possiblement en raison de son effet sur l’insuline et le stockage des graisses.
+L'étude montre que la consommation de fast-food n'a pas d'effet significatif sur l'IMC, ce qui suggère que l'obésité est influencée par des facteurs plus complexes qu'uniquement l'alimentation. En revanche, une forte consommation de sucre est associée à une augmentation du tour de taille, comme établi antérieurement par @buso2023sugar. Et ce possiblement en raison de son effet sur l'insuline et le stockage des graisses.
 
 Un résultat surprenant concerne la consommation d'eau : ceux qui en consomment moins tendent à avoir un IMC plus faible, ce qui va à l'encontre des recommandations habituelles sur l'hydratation. Cela pourrait potentiellement être dû à un biais d'échantillonnage, ou simplement au fait que ce sont les sodas qui ont un impact réel sur le BMI, comme proposé par @chen2024water.
 

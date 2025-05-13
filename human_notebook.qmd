@@ -440,7 +440,6 @@ t.test(data= biometry, bmi~fast_food_rec_yes_no, alternative= "two.sided", conf.
 
 ```
 
-
 <!--% Interprétation statistique et biologique -->
 
 On ne rejette pas H0 au seuil alpha de 5% de manière significatives (t = 0.58851, df = 141 , p-value = 0.5571). C'est à dire que la moyenne du bmi pour les individus mangeant entre 0 et 2 fast-food par mois est égale à la moyenne du bmi des individus mangeant plus de 3 fast-food par mois.
@@ -572,7 +571,7 @@ chart$qqplot(biometrya2f1)
 
 <!--% Interprétation statistique et biologique -->
 
-Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu'il n'y a pas d'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885).
+Nous ne rejetons pas H₀ au seuil α de 5 %, ce qui indique qu'il n'y a pas d'effet significatif sur le BMI en fonction du nombre de fast-food consommés par mois (F = 0.344, ddl = 1, p = 0.558) ni de la consommation de sucre (F = 1.446, ddl = 2, p = 0.239). De plus, il n'y a pas d'interaction significative entre ces deux facteurs au seuil α de 5 % (F = 0.123, ddl = 2, p = 0.885). Les points sur le graphique quantile-quantile sont plus ou moins alignés sauf légèrement aux extrémités ce qui rend l'ANOVA valide.
 
 ### ANOVA à deux facteurs 2
 
@@ -593,9 +592,9 @@ chart(data = ., BMI_moyen ~ eau_rec %col=%genre  %group=% genre) +
 
 <!--% Hypothèse nulle et alternative -->
 
-H0 : Les facteurs n'ont pas d'effet significatif sur la variable dépendante.
+H0 : La consommation d'eau et le genre n'ont pas d'effet significatif sur la moyenne des bmi.
 
-H1: Au moins un des deux facteurs a un effet significatif sur la variable dépendante ou il y a interaction entre les facteurs.
+H1: Au moins un des deux facteurs a un effet significatif sur la moyenne des bmi ou il y a interaction entre les facteurs.
 
 <!--% Vérification des conditions d'application -->
 
@@ -635,6 +634,14 @@ Les points situés sur le graphique quantile - quantile sont relativement align�
 -   Les personnes consommant régulièrement et souvent du sucre ont une moyenne de masse plus ou moins la même. Mais il existe de nombreux points extrêmes chez les personns consommant souvent du sucre.
 
 -   L'IMC est plus important chez les personnes consommant régulièrement et souvent du sucre. De plus l'IMC est plus importants chez les hommes de chez catégories que ailleurs.
+
+-   La moyenne des bmi des individus mangeant entre 0-2 et 3 ou plus fast-food par mois sont plus ou moins les mêmes. Mais l'étalement des points est très grand. Il existe de nombreux points extrêmes.
+
+-   Il y a une différence significative de la moyenne du tour de taille entre les individus consommant régulièrement et jamais à rarement. Mais il n'y a pas de différences significatives entre les personnes consommant souvent du sucre et les deux autres catégories.
+
+-   Il n'y a pas d'effet significatif du nombre de fast-food par mois et/ ou de consommation de sucre sur le bmi. De plus on peut voir qu'il n'y a pas d'interactions entre ces facteurs.
+
+-   Le genre n'a pas d'effet significatif sur la moyenne des bmi mais la consommation d'eau à un effet significatif sur celle-ci. Il n'y a pas d'interaction entre ces deux facteurs.
 
 <!--# Important : ce document doit compiler SANS ERREURS avec le bouton 'Rendu' sinon le travail sera sanctionné lourdement. La compilation du document Quarto est maintenant considérée comme acquise. -->
 
